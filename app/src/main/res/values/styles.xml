@@ -26,4 +26,18 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:textColor">@color/primary_text</item>
     </style>
+
+    <style name="AppTheme.CardView"
+        parent="CardView.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">@dimen/card_elevation</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="android:layout_marginRight">@dimen/padding_small</item>
+        <item name="android:layout_marginLeft">@dimen/padding_small</item>
+        <item name="android:layout_marginBottom">@dimen/padding_small</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
 </resources>

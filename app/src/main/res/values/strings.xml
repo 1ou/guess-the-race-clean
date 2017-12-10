@@ -32,7 +32,6 @@
     <string name="notifications_title">Notifications</string>
     <string name="notifications_not_found">New notifications was not found.</string>
 
-
     <!--Settings screen-->
     <string name="settings_title">Settings</string>
     <string name="app_rating"><b>App Rating</b></string>

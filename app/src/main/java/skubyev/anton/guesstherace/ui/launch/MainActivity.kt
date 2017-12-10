@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.firebase.analytics.FirebaseAnalytics
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.NavigatorHolder
@@ -44,6 +45,8 @@ class MainActivity : BaseActivity(), LaunchView {
 
     override val layoutRes = R.layout.activity_main
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     @InjectPresenter lateinit var presenter: LaunchPresenter
 
     @ProvidePresenter
@@ -60,6 +63,8 @@ class MainActivity : BaseActivity(), LaunchView {
             installModules(MainActivityModule())
             Toothpick.inject(this@MainActivity, this)
         }
+
+        initFirebaseAnalytics()
 
         super.onCreate(savedInstanceState)
     }
@@ -79,6 +84,15 @@ class MainActivity : BaseActivity(), LaunchView {
     override fun onDestroy() {
         super.onDestroy()
         if (isFinishing) Toothpick.closeScope(DI.MAIN_ACTIVITY_SCOPE)
+    }
+
+    private fun initFirebaseAnalytics() {
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "screen")
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "home")
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
     private val navigator = object : SupportAppNavigator(this, R.id.mainContainer) {

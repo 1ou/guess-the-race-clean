@@ -13,7 +13,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.mindorks.placeholderview.SwipeDecor
 import com.mindorks.placeholderview.SwipePlaceHolderView
 import com.mindorks.placeholderview.SwipeViewBuilder
@@ -37,8 +36,6 @@ class HomeFragment : BaseFragment(), HomeView {
     override val layoutRes = R.layout.fragment_home
 
     private lateinit var interstitialAd: InterstitialAd
-
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @InjectPresenter lateinit var presenter: HomePresenter
 
@@ -69,7 +66,6 @@ class HomeFragment : BaseFragment(), HomeView {
         notificationsIW.isClickable = true
         notificationsIW.setOnClickListener { presenter.clickedNotifications() }
 
-        initFirebaseAnalytics()
         initAdv()
     }
 
@@ -103,15 +99,6 @@ class HomeFragment : BaseFragment(), HomeView {
 
         super.onPause()
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
-    }
-
-    private fun initFirebaseAnalytics() {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(activity)
-        val bundle = Bundle()
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "screen")
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "home")
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
     private fun initAdv() {
