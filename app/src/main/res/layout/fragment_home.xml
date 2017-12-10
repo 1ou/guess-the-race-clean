@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@drawable/background_toolbar"
+        android:paddingTop="24dp"
+        app:navigationIcon="@drawable/ic_menu_white_24dp"
+        app:title="@string/home_title"
+        app:titleTextColor="@color/white">
+
+        <ImageView
+            android:id="@+id/notificationsIW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="-5dp"
+            app:srcCompat="@drawable/ic_notifications" />
+
+        <TextView
+            android:id="@+id/cart_badge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end|top"
+            android:layout_marginEnd="-5dp"
+            android:background="@drawable/badge_background"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <ImageView
+            android:id="@+id/answerImageView"
+            android:layout_width="320dp"
+            android:layout_height="420dp"
+            android:layout_gravity="top|center"
+            android:scaleType="fitXY"
+            android:src="@drawable/rounded_frame" />
+
+        <com.mindorks.placeholderview.SwipePlaceHolderView
+            android:id="@+id/raceImageView"
+            android:layout_width="350dp"
+            android:layout_height="471dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY">
+
+            <nl.dionsegijn.konfetti.KonfettiView
+                android:id="@+id/viewKonfetti"
+                android:layout_width="320dp"
+                android:layout_height="420dp"
+                android:layout_gravity="top|center" />
+        </com.mindorks.placeholderview.SwipePlaceHolderView>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/discussBTN"
+        android:layout_width="53dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/raceImageView"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_discuss"
+        tools:ignore="NotSibling" />
+
+</android.support.constraint.ConstraintLayout>

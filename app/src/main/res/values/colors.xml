@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#178036</color>
+    <color name="colorPrimaryDark">#50000000</color>
+
+    <color name="colorAccent">#178036</color>
+    <color name="colorTransparentDark">#14000000</color>
+
+    <color name="primary_text">#ff1f1f1f</color>
+    <color name="secondary_text">#ff6a8398</color>
+    <color name="search_border">#3d4858</color>
+
+    <color name="white">#ffffff</color>
+    <color name="divider">#ffe0e6ea</color>
+
+    <color name="colorPrimaryLight">#5B686D</color>
+
+    <color name="transparentBlack">#50000000</color>
+    <color name="whiteDivider">#9effffff</color>
+    <color name="lightGray">#fff1f1f1</color>
+    <color name="productTabsBackground">#f0f0f0</color>
+
+    <color name="accentRed">#c12c00</color>
+
+    <color name="accentOrange">#e98b50</color>
+    <color name="accentYellow">#f3cd97</color>
+    <color name="accentMint">#28cc9e</color>
+    <color name="accentGreen">#196b69</color>
+    <color name="tabColor">#56b34c</color>
+    <color name="colorFocused">#bbdefb</color>
+    <color name="blue">#046fd0</color>
+    <color name="whiteGray">#a3a3a3</color>
+</resources>

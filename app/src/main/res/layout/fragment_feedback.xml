@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@drawable/background_toolbar"
+        android:paddingTop="24dp"
+        app:navigationIcon="@drawable/ic_arrow_back_24dp"
+        app:title="@string/feedback_title"
+        app:titleTextColor="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/feedback_message" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/divider_size"
+                    android:background="@color/divider" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/expandButton"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_background"
+                android:elevation="6dp"
+                android:foreground="?selectableItemBackground"
+                android:padding="16dp"
+                android:text="@string/send_feedback" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:el_duration="300"
+                app:el_expanded="false">
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/feedbackText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:minLines="3"
+                        android:hint="@string/your_message"
+                        android:inputType="textMultiLine" />
+
+                    <CheckBox
+                        android:id="@+id/infoSystem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/system_information" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="end">
+
+                        <Button
+                            android:id="@+id/buttonPreview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/preview_button" />
+
+                        <Button
+                            android:id="@+id/buttonSend"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/send_button" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_size"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/rateApp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_background"
+                android:elevation="6dp"
+                android:foreground="?selectableItemBackground"
+                android:padding="16dp"
+                android:text="@string/rate_app" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_size"
+                android:background="@color/divider" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_size"
+                android:background="@color/divider" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

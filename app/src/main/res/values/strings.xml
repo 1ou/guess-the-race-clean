@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">aGuess the race</string>
+
+    <!--Auth screen-->
+    <string name="auth_title">Registration</string>
+    <string name="name">Name</string>
+    <string name="greeting">Welcome to the application Guess The Race. Enter your name and press OK.</string>
+    <string name="error_login">That name has already used.</string>
+    <string name="error_login_length">Name should consist more than 2 symbols.</string>
+    <string name="you_not_auth">You did not authorized</string>
+
+    <!--Home screen-->
+    <string name="home_title">Guess the race</string>
+    <string name="black">Black</string>
+    <string name="white">White</string>
+    <string name="you_guessed">You guessed</string>
+    <string name="you_not_guessed">You did not guess</string>
+
+    <!--Comments screen-->
+    <string name="comments_title">Comments</string>
+    <string name="comments_not_found">Comments was not found. You can be first!</string>
+    <string name="add_comment">Add comment</string>
+    <string name="success_add_comment">Comment successful added.</string>
+    <string name="fail_add_comment">Error. Comment was not added.</string>
+
+    <!--Rating screen-->
+    <string name="rating_title">Rating</string>
+    <string name="racist">Racist</string>
+    <string name="anti_racist">Anti-racist</string>
+
+    <!--Notifications screen-->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_not_found">New notifications was not found.</string>
+
+
+    <!--Settings screen-->
+    <string name="settings_title">Settings</string>
+    <string name="app_rating"><b>App Rating</b></string>
+    <string name="app_rating_subtext">Rate the app on Google Play</string>
+    <string name="recommend_app"><b>Recommend this App</b></string>
+    <string name="recommend_app_subtext">Recommend the Guess The Race App to a friend</string>
+    <string name="clear_watched_images"><b>Clear Watched Images</b></string>
+    <string name="clear_watched_images_subtext">Removes all previously saved Watched Images</string>
+    <string name="privacy">Privacy</string>
+    <string name="version">Version</string>
+    <string name="remove_from_watched_images">Would you like to remove all images from Watched Images?</string>
+    <string name="remove">Remove</string>
+    <string name="remove_success">Watched Images removed!</string>
+    <string name="remove_error">Watched Images was not removed!</string>
+
+    <!--Feedback screen-->
+    <string name="feedback_title">Feedback</string>
+    <string name="feedback_message">Do you have questions or suggestions, or would you like to notify us of a technical problem? Then send us your feedback!\n\nIf you like our app, please rate it in the store: Google Play!</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="send_button">Send</string>
+    <string name="preview_button">Preview</string>
+    <string name="system_information">incl. system information</string>
+    <string name="rate_app">Rate App</string>
+    <string name="your_message">Your message</string>
+
+    <!--Error messages-->
+    <string name="check_internet_error">Nothing was found. Check the internet connection.</string>
+    <string name="error_choose">Element selection error</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="error">Error</string>
+    <string name="network_error">Network error</string>
+    <string name="not_modified_error">304 Not Modified</string>
+    <string name="bad_request_error">400 Bad Request</string>
+    <string name="unauthorized_error">401 Unauthorized</string>
+    <string name="forbidden_error">403 Forbidden</string>
+    <string name="not_found_error">404 Not Found</string>
+    <string name="method_not_allowed_error">405 Method Not Allowed</string>
+    <string name="conflict_error">409 Conflict</string>
+    <string name="unprocessable_error">422 Unprocessable</string>
+    <string name="server_error_error">500 Server Error</string>
+
+    <!--Calligraphy Config-->
+    <string name="font_main_regular">fonts/OpenSans-Light.ttf</string>
+    <string name="font_main_medium">fonts/OpenSans-Regular.ttf</string>
+    <string name="font_main_bold">fonts/OpenSans-Bold.ttf</string>
+
+    <!--Navigation drawer-->
+    <string name="header">Great Deal Compare</string>
+    <string name="home_item">Home</string>
+    <string name="rating_item">Rating</string>
+    <string name="settings_item">Settings</string>
+    <string name="feedback_item">Feedback</string>
+    <string name="exit">exit</string>
+    <string name="logout_question">Logout?</string>
+
+    <!--General-->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save">Save</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <!--Admob-->
+    <string name="admob_unit_id">ca-app-pub-6408266897351843/5980174013</string>
+
+</resources>

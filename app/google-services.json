@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "384865631620",
+    "firebase_url": "https://guess-the-race-ca4aa.firebaseio.com",
+    "project_id": "guess-the-race-ca4aa",
+    "storage_bucket": "guess-the-race-ca4aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384865631620:android:5d6857a2671d67cd",
+        "android_client_info": {
+          "package_name": "skubyev.anton.guesstherace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384865631620-i74n20tkrblhgkp67jjil28df1v061mm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "skubyev.anton.guesstherace",
+            "certificate_hash": "2a5b8880635c775b1289290cde19bc06ddd1d677"
+          }
+        },
+        {
+          "client_id": "384865631620-qttta2n5sk16tjrqivjcdth8sbr688bj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk9x1EuPJsNFqxHpntfCw6pRVki58-EUY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384865631620-qttta2n5sk16tjrqivjcdth8sbr688bj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
