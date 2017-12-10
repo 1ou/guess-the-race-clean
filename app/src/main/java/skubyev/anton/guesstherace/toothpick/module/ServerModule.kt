@@ -8,6 +8,7 @@ import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.comments.CommentsInteractor
 import skubyev.anton.guesstherace.model.interactor.home.HomeInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
+import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.interactor.rating.RatingInteractor
 import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
 import skubyev.anton.guesstherace.model.repository.auth.AuthRepository
@@ -54,6 +55,7 @@ class ServerModule(serverUrl: String) : Module() {
 
         //Profile
         bind(ProfileRepository::class.java)
+        bind(ProfileInteractor::class.java)
 
         //Settings
         bind(SettingsInteractor::class.java)

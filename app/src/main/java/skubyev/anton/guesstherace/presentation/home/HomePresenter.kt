@@ -13,6 +13,7 @@ import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.home.HomeInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
+import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.system.ResourceManager
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
 import skubyev.anton.guesstherace.presentation.global.GlobalMenuController
@@ -25,6 +26,7 @@ class HomePresenter @Inject constructor(
         private val homeInteractor: HomeInteractor,
         private val authInteractor: AuthInteractor,
         private val notificationsInteractor: NotificationsInteractor,
+        private val profileInteractor: ProfileInteractor,
         private val errorHandler: ErrorHandler,
         private val resourceManager: ResourceManager
 ) : MvpPresenter<HomeView>() {
@@ -78,11 +80,14 @@ class HomePresenter @Inject constructor(
 
     fun appendRating(state: Boolean) {
         val token = authInteractor.token()
-        if (authInteractor.isSignedIn() && token != null) {
-            homeInteractor.appendRating(
+        if (token != null) {
+            profileInteractor.appendRating(
                     token,
                     state
-            )
+            ).subscribe(
+                    { },
+                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+            ).addTo(compositeDisposable)
         } else {
             viewState.showMessage(resourceManager.getString(R.string.you_not_auth))
         }

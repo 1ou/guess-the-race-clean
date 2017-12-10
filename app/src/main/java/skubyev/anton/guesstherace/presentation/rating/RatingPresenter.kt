@@ -5,6 +5,8 @@ import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.extension.addTo
+import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
+import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.interactor.rating.RatingInteractor
 import skubyev.anton.guesstherace.model.system.ResourceManager
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
@@ -15,6 +17,8 @@ import javax.inject.Inject
 class RatingPresenter @Inject constructor(
         private val router: Router,
         private val ratingInteractor: RatingInteractor,
+        private val profileInteractor: ProfileInteractor,
+        private val authInteractor: AuthInteractor,
         private val errorHandler: ErrorHandler,
         private val resourceManager: ResourceManager,
         private val menuController: GlobalMenuController
@@ -35,6 +39,20 @@ class RatingPresenter @Inject constructor(
                         { errorHandler.proceed(it, { viewState.showMessage(it) }) }
                 )
                 .addTo(compositeDisposable)
+
+        val token = authInteractor.token()
+        if (token != null) {
+            profileInteractor.getProfile(token)
+                    .doOnSuccess {
+                        if (it.allAmount > 0) {
+                            viewState.showRacistValue((it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
+                        }
+                    }
+                    .subscribe(
+                            { },
+                            { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+                    ).addTo(compositeDisposable)
+        }
     }
 
     override fun onDestroy() {

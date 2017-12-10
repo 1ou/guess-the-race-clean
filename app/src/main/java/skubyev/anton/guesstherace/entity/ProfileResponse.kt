@@ -15,13 +15,13 @@ class ProfileResponse {
     val guessed: Int = 0
     @SerializedName("all_amount")
     @Expose
-    val allAmount: Int = 0
+    var allAmount: Int = 0
     @SerializedName("token")
     @Expose
     lateinit var token: String
     @SerializedName("rating")
     @Expose
-    val rating: Int = 0
+    val rating: Double = 0.0
     @SerializedName("place")
     @Expose
     val place: Int = 0

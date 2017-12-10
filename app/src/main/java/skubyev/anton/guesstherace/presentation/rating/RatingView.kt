@@ -10,6 +10,7 @@ import skubyev.anton.guesstherace.entity.RatingResponse
 interface RatingView : MvpView {
     fun showEmptyView()
     fun showRating(rating: List<RatingResponse>)
+    fun showRacistValue(value: Int)
     fun showProgress(show: Boolean)
 
     @StateStrategyType(OneExecutionStateStrategy::class)

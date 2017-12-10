@@ -17,7 +17,7 @@ class RatingResponse {
     var allAmount: Int = 0
     @SerializedName("rating")
     @Expose
-    var rating: Int = 0
+    var rating: Double = 0.0
     @SerializedName("place")
     @Expose
     var place: Int = 0
