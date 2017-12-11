@@ -54,6 +54,7 @@ ext {
     toothpickVersion = "1.0.6"
     retrofitVersion = "2.3.0"
     requery = "1.4.0"
+    firebase = "11.6.2"
 }
 
 dependencies {
@@ -137,11 +138,11 @@ dependencies {
     compile 'com.pixplicity.easyprefs:library:1.9.0@aar'
 
     //GA && Dependency for Google Sign-In
-    compile 'com.google.android.gms:play-services-analytics:11.6.2'
-    compile 'com.google.firebase:firebase-ads:11.6.2'
-    compile 'com.google.firebase:firebase-messaging:11.6.2'
-    compile 'com.google.firebase:firebase-core:11.6.2'
-    implementation 'com.google.firebase:firebase-crash:11.6.2'
+    compile "com.google.android.gms:play-services-analytics:$firebase"
+    compile "com.google.firebase:firebase-ads:$firebase"
+    compile "com.google.firebase:firebase-messaging:$firebase"
+    compile "com.google.firebase:firebase-core:$firebase"
+    compile "com.google.firebase:firebase-crash:$firebase"
 
     //Konfetti
     compile 'nl.dionsegijn:konfetti:1.1.0'

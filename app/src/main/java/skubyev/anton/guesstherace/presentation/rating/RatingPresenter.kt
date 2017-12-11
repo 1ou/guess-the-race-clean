@@ -15,12 +15,10 @@ import javax.inject.Inject
 
 @InjectViewState
 class RatingPresenter @Inject constructor(
-        private val router: Router,
         private val ratingInteractor: RatingInteractor,
         private val profileInteractor: ProfileInteractor,
         private val authInteractor: AuthInteractor,
         private val errorHandler: ErrorHandler,
-        private val resourceManager: ResourceManager,
         private val menuController: GlobalMenuController
 ) : MvpPresenter<RatingView>() {
 
@@ -45,7 +43,7 @@ class RatingPresenter @Inject constructor(
             profileInteractor.getProfile(token)
                     .doOnSuccess {
                         if (it.allAmount > 0) {
-                            viewState.showRacistValue((it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
+                            viewState.showRacistValue(100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
                         }
                     }
                     .subscribe(

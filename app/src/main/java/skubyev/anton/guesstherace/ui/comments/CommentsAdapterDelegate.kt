@@ -29,7 +29,7 @@ class CommentsAdapterDelegate : AdapterDelegate<MutableList<ListItem>>() {
         fun bind(comment: CommentResponse) {
             this.comment = comment
 
-            view.titleTV.text = comment.name
+            view.authorTV.text = comment.name
             view.commentTV.text = comment.comment
             view.dateTV.text = comment.date
         }

@@ -9,6 +9,7 @@ import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.entity.RatingResponse
 import skubyev.anton.guesstherace.extension.inflate
 import skubyev.anton.guesstherace.ui.global.list.ListItem
+import java.text.DecimalFormat
 
 class RatingAdapterDelegate : AdapterDelegate<MutableList<ListItem>>() {
     override fun isForViewType(items: MutableList<ListItem>, position: Int) =
@@ -31,7 +32,9 @@ class RatingAdapterDelegate : AdapterDelegate<MutableList<ListItem>>() {
 
             view.nameTV.text = rating.name
             view.placeTV.text = rating.place.toString()
-            view.ratingTV.text = rating.rating.toString()
+
+            val df = DecimalFormat("#.##")
+            view.ratingTV.text = df.format(rating.rating)
         }
     }
 }

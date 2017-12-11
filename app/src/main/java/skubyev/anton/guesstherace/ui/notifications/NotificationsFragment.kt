@@ -1,12 +1,17 @@
 package skubyev.anton.guesstherace.ui.notifications
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Parcelable
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import kotlinx.android.synthetic.main.fragment_comments.*
+import kotlinx.android.synthetic.main.fragment_notifications.*
 import kotlinx.android.synthetic.main.layout_list_with_update.*
 import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.entity.Notification
@@ -47,6 +52,34 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
             setHasFixedSize(true)
             adapter = ratingAdapter
         }
+    }
+
+    private val messageReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+
+            val state = intent.getBooleanExtra("message", false)
+
+            if (state) {
+                presenter.loadNotifications()
+            }
+        }
+    }
+
+    override fun onResume() {
+        LocalBroadcastManager.getInstance(context!!)
+                .registerReceiver(
+                        messageReceiver,
+                        IntentFilter("notification")
+                )
+
+        super.onResume()
+    }
+
+    override fun onPause() {
+        LocalBroadcastManager.getInstance(context!!)
+                .unregisterReceiver(messageReceiver)
+
+        super.onPause()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

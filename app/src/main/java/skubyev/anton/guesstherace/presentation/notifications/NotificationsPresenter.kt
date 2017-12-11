@@ -23,19 +23,21 @@ class NotificationsPresenter @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
 
     override fun onFirstViewAttach() {
-        notificationsInteractor.getNotifications()
-                .doOnSuccess { notifications ->
-                    if (notifications.isEmpty()) viewState.showEmptyView()
-                    else viewState.showNotifications(notifications)
-                }
-                .doOnSubscribe { viewState.showProgress(true) }
-                .doAfterTerminate { viewState.showProgress(false) }
-                .subscribe(
-                        { },
-                        { errorHandler.proceed(it, { viewState.showMessage(it) }) }
-                )
-                .addTo(compositeDisposable)
+        loadNotifications()
     }
+
+    fun loadNotifications() = notificationsInteractor.getNotifications()
+            .doOnSuccess { notifications ->
+                if (notifications.isEmpty()) viewState.showEmptyView()
+                else viewState.showNotifications(notifications)
+            }
+            .doOnSubscribe { viewState.showProgress(true) }
+            .doAfterTerminate { viewState.showProgress(false) }
+            .subscribe(
+                    { },
+                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+            )
+            .addTo(compositeDisposable)
 
     override fun onDestroy() {
         compositeDisposable.dispose()

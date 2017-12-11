@@ -37,14 +37,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:gravity="start"
-            android:text="@string/racist" />
+            android:text="@string/anti_racist" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:gravity="end"
-            android:text="@string/anti_racist" />
+            android:text="@string/racist" />
     </LinearLayout>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -17,8 +17,8 @@ apply plugin: 'kotlin'
 
 allprojects {
     repositories {
-        google()
         jcenter()
+        google()
     }
 }
 compileKotlin {
