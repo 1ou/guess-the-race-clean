@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
@@ -21,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import skubyev.anton.guesstherace.R
-import skubyev.anton.guesstherace.extension.random
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.presentation.home.HomePresenter
 import skubyev.anton.guesstherace.presentation.home.HomeView
@@ -30,12 +28,13 @@ import skubyev.anton.guesstherace.ui.global.BaseFragment
 import timber.log.Timber
 import toothpick.Toothpick
 
-
 class HomeFragment : BaseFragment(), HomeView {
 
     override val layoutRes = R.layout.fragment_home
 
     private lateinit var interstitialAd: InterstitialAd
+
+    private lateinit var interstitialBottomAd: InterstitialAd
 
     @InjectPresenter lateinit var presenter: HomePresenter
 
@@ -89,8 +88,6 @@ class HomeFragment : BaseFragment(), HomeView {
                 )
 
         super.onResume()
-        setHasOptionsMenu(true)
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onPause() {
@@ -98,13 +95,22 @@ class HomeFragment : BaseFragment(), HomeView {
                 .unregisterReceiver(messageReceiver)
 
         super.onPause()
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
     }
 
     private fun initAdv() {
         interstitialAd = InterstitialAd(context)
         interstitialAd.adUnitId = getString(R.string.admob_unit_id)
         interstitialAd.loadAd(AdRequest.Builder().build())
+
+        interstitialBottomAd = InterstitialAd(context)
+        interstitialBottomAd.adUnitId = getString(R.string.admob_unit_id_bottom_banner)
+        interstitialBottomAd.loadAd(AdRequest.Builder().build())
+
+        if (interstitialBottomAd.isLoaded) {
+            interstitialBottomAd.show()
+        } else {
+            Timber.d("TAG", "The interstitial wasn't loaded yet.")
+        }
     }
 
     override fun showNotifications(count: Int) {
@@ -129,7 +135,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
         if (state) {
             showMessage(resources.getString(R.string.you_guessed))
-//            showKonfetti()
+            showKonfetti()
             presenter.appendRating(true)
         } else {
             showMessage(resources.getString(R.string.you_not_guessed))
@@ -146,7 +152,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     private fun showAdvertising() {
-        if ((0..20).random() == 10) {
+        if (presenter.isShowAdv()) {
             if (interstitialAd.isLoaded) {
                 interstitialAd.show()
             } else {

@@ -1,5 +1,6 @@
 package skubyev.anton.guesstherace.model.interactor.home
 
+import skubyev.anton.guesstherace.extension.random
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.repository.images.ImagesRepository
 import skubyev.anton.guesstherace.model.repository.watchedimages.WatchedImagesRepository
@@ -19,4 +20,6 @@ class HomeInteractor @Inject constructor(
     ) = watchedImagesRepository.addWatchedImage(
             image
     )
+
+    fun isShowAdv() = (0..100).random() > 93
 }

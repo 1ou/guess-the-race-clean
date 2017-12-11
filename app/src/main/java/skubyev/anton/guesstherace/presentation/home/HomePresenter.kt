@@ -7,6 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.extension.addTo
+import skubyev.anton.guesstherace.extension.random
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
@@ -83,6 +84,8 @@ class HomePresenter @Inject constructor(
                     { },
                     { errorHandler.proceed(it, { viewState.showMessage(it) }) }
             ).addTo(compositeDisposable)
+
+    fun isShowAdv() = homeInteractor.isShowAdv()
 
     fun clickedDiscuss() = router.navigateTo(Screens.COMMENTS_SCREEN, currentImage.idImage)
 

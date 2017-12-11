@@ -27,6 +27,10 @@
     <string name="rating_title">Rating</string>
     <string name="racist">Racist</string>
     <string name="anti_racist">Anti-racist</string>
+    <string name="top_users"><b>Top users</b></string>
+    <string name="place_rating">Place</string>
+    <string name="name_rating">Name</string>
+    <string name="rating_rating">Rating</string>
     <string name="rank">Rank:</string>
     <string name="rang_1">Martin Luther King</string>
     <string name="rang_2">Nelson Rolihlahla Mandela</string>
@@ -102,5 +106,7 @@
 
     <!--Admob-->
     <string name="admob_unit_id">ca-app-pub-6408266897351843/5980174013</string>
+    <string name="admob_unit_id_bottom_banner">ca-app-pub-6408266897351843/3380318993</string>
+
 
 </resources>
