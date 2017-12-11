@@ -17,6 +17,36 @@
         app:title="@string/rating_title"
         app:titleTextColor="@color/white" />
 
+    <ImageView
+        android:id="@+id/rankIW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/rank" />
+
+        <TextView
+            android:id="@+id/rankTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            tools:text="Test rank" />
+
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/racistPB"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
@@ -45,10 +75,21 @@
             android:layout_gravity="end"
             android:gravity="end"
             android:text="@string/racist" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_size"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/divider" />
+
     </LinearLayout>
+
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="match_parent">
 
         <include layout="@layout/layout_list_with_progress" />

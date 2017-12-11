@@ -18,6 +18,6 @@ class RatingInteractor @Inject constructor(
         in 41..60 -> Rank(resourceManager.getString(R.string.rang_3), "http://wooa.ru/android/determinace/backend/rank/rank3.jpg")
         in 61..80 -> Rank(resourceManager.getString(R.string.rang_4), "http://wooa.ru/android/determinace/backend/rank/rank4.jpg")
         in 81..100 -> Rank(resourceManager.getString(R.string.rang_5), "http://wooa.ru/android/determinace/backend/rank/rank5.jpg")
-        else -> Rank(resourceManager.getString(R.string.rang_1), "")
+        else -> Rank(resourceManager.getString(R.string.rang_1), "http://wooa.ru/android/determinace/backend/rank/rank1.jpg")
     }
 }

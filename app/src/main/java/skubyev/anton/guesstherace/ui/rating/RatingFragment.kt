@@ -6,9 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_view.view.*
 import kotlinx.android.synthetic.main.fragment_rating.*
 import kotlinx.android.synthetic.main.layout_list_with_update.*
 import skubyev.anton.guesstherace.R
+import skubyev.anton.guesstherace.entity.Rank
 import skubyev.anton.guesstherace.entity.RatingResponse
 import skubyev.anton.guesstherace.extension.visible
 import skubyev.anton.guesstherace.presentation.rating.RatingPresenter
@@ -55,6 +58,11 @@ class RatingFragment : BaseFragment(), RatingView {
         if (recyclerView != null) {
             outState.putParcelable("ListState", recyclerView.layoutManager.onSaveInstanceState())
         }
+    }
+
+    override fun showRank(rank: Rank) {
+        Picasso.with(context).load(rank.url).into(rankIW)
+        rankTV.text = rank.rank
     }
 
     override fun showEmptyView() {
