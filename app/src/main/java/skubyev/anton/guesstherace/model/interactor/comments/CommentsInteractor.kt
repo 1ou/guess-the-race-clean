@@ -6,13 +6,15 @@ import javax.inject.Inject
 class CommentsInteractor @Inject constructor(
         private val commentsRepository: CommentsRepository
 ) {
-    fun getComments(idImage: Int) = commentsRepository.getComments(idImage)
+    fun getComments(token: String, idImage: Int) = commentsRepository.getComments(token, idImage)
 
     fun addComment(
+            token: String,
             message: String,
             idImage: Int,
             idAuthor: Int
     ) = commentsRepository.addComment(
+            token,
             message,
             idImage,
             idAuthor

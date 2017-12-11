@@ -14,7 +14,7 @@ class LaunchPresenter @Inject constructor(
 ) : MvpPresenter<LaunchView>() {
 
     override fun onFirstViewAttach() {
-        if (authInteractor.isSignedIn()) router.newRootScreen(Screens.MAIN_SCREEN)
+        if (authInteractor.isSignedIn) router.newRootScreen(Screens.MAIN_SCREEN)
         else router.newRootScreen(Screens.AUTH_SCREEN)
     }
 

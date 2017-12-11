@@ -10,7 +10,7 @@ class AuthRepository @Inject constructor(
         private val api: GeneralApi,
         private val schedulers: SchedulersProvider
 ) {
-    val isSignedIn get() = !authData.token.isNullOrEmpty()
+    fun isSignedIn() = authData.token != ""
 
     fun requestToken(token: String) = api
             .auth(token)
@@ -42,6 +42,6 @@ class AuthRepository @Inject constructor(
     fun idUser() = authData.idUser
 
     fun clearAuthData() {
-        authData.token = null
+        authData.token = ""
     }
 }

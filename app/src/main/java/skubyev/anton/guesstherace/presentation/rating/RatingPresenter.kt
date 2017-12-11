@@ -25,7 +25,7 @@ class RatingPresenter @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
 
     override fun onFirstViewAttach() {
-        ratingInteractor.getRating()
+        ratingInteractor.getRating(authInteractor.token())
                 .doOnSuccess { rating ->
                     if (rating.isEmpty()) viewState.showEmptyView()
                     else viewState.showRating(rating)
@@ -38,19 +38,16 @@ class RatingPresenter @Inject constructor(
                 )
                 .addTo(compositeDisposable)
 
-        val token = authInteractor.token()
-        if (token != null) {
-            profileInteractor.getProfile(token)
-                    .doOnSuccess {
-                        if (it.allAmount > 0) {
-                            viewState.showRacistValue(100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
-                        }
+        profileInteractor.getProfile(authInteractor.token())
+                .doOnSuccess {
+                    if (it.allAmount > 0) {
+                        viewState.showRacistValue(100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
                     }
-                    .subscribe(
-                            { },
-                            { errorHandler.proceed(it, { viewState.showMessage(it) }) }
-                    ).addTo(compositeDisposable)
-        }
+                }
+                .subscribe(
+                        { },
+                        { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+                ).addTo(compositeDisposable)
     }
 
     override fun onDestroy() {

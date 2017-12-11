@@ -43,7 +43,7 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        toolbar.setNavigationOnClickListener { presenter.onMenuPressed() }
+        toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
 
         listState = savedInstanceState?.getParcelable("ListState")
 
@@ -106,6 +106,8 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
     override fun showMessage(message: String) {
         showSnackMessage(message)
     }
+
+    override fun onBackPressed() = presenter.onBackPressed()
 
     inner class NotificationsAdapter : ListDelegationAdapter<MutableList<ListItem>>() {
         init {

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AuthInteractor @Inject constructor(
         private val authRepository: AuthRepository
 ) {
-    fun isSignedIn() = authRepository.isSignedIn
+    val isSignedIn get() = authRepository.isSignedIn()
 
     fun login() =
             Completable.defer {

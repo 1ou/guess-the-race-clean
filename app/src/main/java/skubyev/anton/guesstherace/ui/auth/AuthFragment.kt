@@ -42,6 +42,12 @@ class AuthFragment : BaseFragment(), AuthView {
                 showSnackMessage(getString(R.string.error_login_length))
             }
         }
+
+        loginTV.setOnClickListener {
+            if (loginTV.text.toString() == getString(R.string.name)) {
+                loginTV.setText("")
+            }
+        }
     }
 
     override fun showErrorDialog() {

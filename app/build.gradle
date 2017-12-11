@@ -14,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "ORIGIN_API_ENDPOINT", '"http://cm08323.tmweb.ru/android/determinace/backend/"'
+        buildConfigField "String", "ORIGIN_API_ENDPOINT", '"http://wooa.ru/android/determinace/backend/"'
 
         vectorDrawables.useSupportLibrary true
 

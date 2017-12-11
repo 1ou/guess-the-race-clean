@@ -27,15 +27,19 @@ interface GeneralApi {
     ): Single<ProfileResponse>
 
     @GET("$API_PATH/handler.php?type=images")
-    fun getImages(): Single<List<ImagesResponse>>
+    fun getImages(
+            @Query("token") token: String
+    ): Single<List<ImagesResponse>>
 
     @GET("handler.php?type=view_comment")
     fun getComments(
+            @Query("token") token: String,
             @Query("id") id: Int
     ): Single<List<CommentResponse>>
 
     @GET("handler.php?type=add_comment")
     fun addComment(
+            @Query("token") token: String,
             @Query("comment") comment: String,
             @Query("idImage") idImage: Int,
             @Query("idAuthor") idAuthor: Int
@@ -52,5 +56,7 @@ interface GeneralApi {
     ): Single<ProfileResponse>
 
     @GET("$API_PATH/handler.php?type=rating")
-    fun getUsersRating(): Single<List<RatingResponse>>
+    fun getUsersRating(
+            @Query("token") token: String
+    ): Single<List<RatingResponse>>
 }

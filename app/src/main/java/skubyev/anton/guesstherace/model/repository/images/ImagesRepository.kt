@@ -21,23 +21,23 @@ class ImagesRepository @Inject constructor(
 ) {
     private val expirationTime: Long = 1000 * 60 * 60 * 24 // 24 h
 
-    fun getImage(watchedImages: List<Int>) = cache.findByCache(database.type.toString())
+    fun getImage(token: String, watchedImages: List<Int>) = cache.findByCache(database.type.toString())
             .flatMap { cache ->
                 if (Date().time - cache.time < expirationTime) {
                     return@flatMap getDataFromDB(watchedImages)
                 } else {
                     updateCache(cache)
-                    return@flatMap getDataFromApi()
+                    return@flatMap getDataFromApi(token)
                 }
             }
             .onErrorResumeNext {
                 updateCache(null)
-                return@onErrorResumeNext getDataFromApi()
+                return@onErrorResumeNext getDataFromApi(token)
             }
 
     private fun getDataFromDB(watchedImages: List<Int>) = database.getImage(watchedImages)
 
-    private fun getDataFromApi() = api.getImages()
+    private fun getDataFromApi(token: String) = api.getImages(token)
             .map { list -> list.map { mapper.invoke(it) } }
             .doOnSuccess {
                 database.removeAllResults()

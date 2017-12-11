@@ -7,5 +7,5 @@ import javax.inject.Inject
 class RatingInteractor @Inject constructor(
         private val ratingRepository: RatingRepository
 ) {
-    fun getRating() = ratingRepository.getUsersRating()
+    fun getRating(token: String) = ratingRepository.getUsersRating(token)
 }

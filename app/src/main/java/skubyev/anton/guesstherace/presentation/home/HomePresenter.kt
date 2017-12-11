@@ -5,7 +5,6 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
-import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.extension.addTo
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
@@ -14,7 +13,6 @@ import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.home.HomeInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
-import skubyev.anton.guesstherace.model.system.ResourceManager
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
 import skubyev.anton.guesstherace.presentation.global.GlobalMenuController
 import javax.inject.Inject
@@ -27,8 +25,7 @@ class HomePresenter @Inject constructor(
         private val authInteractor: AuthInteractor,
         private val notificationsInteractor: NotificationsInteractor,
         private val profileInteractor: ProfileInteractor,
-        private val errorHandler: ErrorHandler,
-        private val resourceManager: ResourceManager
+        private val errorHandler: ErrorHandler
 ) : MvpPresenter<HomeView>() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -49,7 +46,7 @@ class HomePresenter @Inject constructor(
     }
 
     private fun loadImage() {
-        homeInteractor.getImage()
+        homeInteractor.getImage(authInteractor.token())
                 .doOnSuccess { image ->
                     currentImage = image
                     viewState.showImage(image)
@@ -78,20 +75,14 @@ class HomePresenter @Inject constructor(
         }, 3000)
     }
 
-    fun appendRating(state: Boolean) {
-        val token = authInteractor.token()
-        if (token != null) {
-            profileInteractor.appendRating(
-                    token,
-                    state
-            ).subscribe(
+    fun appendRating(state: Boolean) = profileInteractor.appendRating(
+            authInteractor.token(),
+            state
+    )
+            .subscribe(
                     { },
                     { errorHandler.proceed(it, { viewState.showMessage(it) }) }
             ).addTo(compositeDisposable)
-        } else {
-            viewState.showMessage(resourceManager.getString(R.string.you_not_auth))
-        }
-    }
 
     fun clickedDiscuss() = router.navigateTo(Screens.COMMENTS_SCREEN, currentImage.idImage)
 

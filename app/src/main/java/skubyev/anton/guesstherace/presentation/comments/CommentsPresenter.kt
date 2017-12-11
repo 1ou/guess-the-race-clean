@@ -36,7 +36,10 @@ class CommentsPresenter @Inject constructor(
         compositeDisposable.dispose()
     }
 
-    fun updateComments() = commentsInteractor.getComments(idImage)
+    fun updateComments() = commentsInteractor.getComments(
+            authInteractor.token(),
+            idImage
+    )
             .doOnSuccess { comments ->
                 if (comments.isEmpty()) viewState.showEmptyView()
                 else viewState.showComments(comments)
@@ -50,6 +53,7 @@ class CommentsPresenter @Inject constructor(
             .addTo(compositeDisposable)
 
     fun addComment(msg: String) = commentsInteractor.addComment(
+            authInteractor.token(),
             msg,
             idImage,
             authInteractor.idUser()
@@ -58,8 +62,7 @@ class CommentsPresenter @Inject constructor(
                 if (state.success) {
                     viewState.showMessage(resourceManager.getString(R.string.success_add_comment))
                     updateComments()
-                }
-                else viewState.showMessage(resourceManager.getString(R.string.fail_add_comment))
+                } else viewState.showMessage(resourceManager.getString(R.string.fail_add_comment))
             }
             .doOnSubscribe { viewState.showProgress(true) }
             .doAfterTerminate { viewState.showProgress(false) }

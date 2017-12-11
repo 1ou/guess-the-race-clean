@@ -46,5 +46,5 @@ class NotificationsPresenter @Inject constructor(
     fun notificationWasShowed(notification: Notification) = notificationsInteractor.updateNotification(notification)
             .subscribeIgnoreResult()
 
-    fun onMenuPressed() = router.exit()
+    fun onBackPressed() = router.exit()
 }

@@ -9,15 +9,17 @@ class CommentsRepository @Inject constructor(
         private val schedulers: SchedulersProvider
 ) {
 
-    fun getComments(idImage: Int) = api.getComments(idImage)
+    fun getComments(token: String, idImage: Int) = api.getComments(token, idImage)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
 
     fun addComment(
+            token: String,
             message: String,
             idImage: Int,
             idAuthor: Int
     ) = api.addComment(
+            token,
             message,
             idImage,
             idAuthor

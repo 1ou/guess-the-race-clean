@@ -8,7 +8,7 @@ class RatingRepository @Inject constructor(
         private val api: GeneralApi,
         private val schedulers: SchedulersProvider
 ) {
-    fun getUsersRating() = api.getUsersRating()
+    fun getUsersRating(token: String) = api.getUsersRating(token)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
 }

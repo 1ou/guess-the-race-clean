@@ -15,8 +15,8 @@ class Prefs @Inject constructor(
     private fun getSharedPreferences(prefsName: String)
             = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
 
-    override var token: String?
-        get() = getSharedPreferences(AUTH_DATA).getString(KEY_TOKEN, null)
+    override var token: String
+        get() = getSharedPreferences(AUTH_DATA).getString(KEY_TOKEN, "")
         set(value) {
             getSharedPreferences(AUTH_DATA).edit().putString(KEY_TOKEN, value).apply()
         }

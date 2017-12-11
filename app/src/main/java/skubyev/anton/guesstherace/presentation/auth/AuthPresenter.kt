@@ -16,7 +16,6 @@ import javax.inject.Inject
 class AuthPresenter @Inject constructor(
         private val router: Router,
         private val authInteractor: AuthInteractor,
-        private val resourceManager: ResourceManager,
         private val errorHandler: ErrorHandler
 ) : MvpPresenter<AuthView>() {
 
@@ -38,13 +37,13 @@ class AuthPresenter @Inject constructor(
     fun testLogin(login: String) = authInteractor
             .testLogin(login)
             .doOnSuccess {
-                if (it.success) {
-                    registration(login)
-                } else {
-                    viewState.showErrorDialog()
-                }
+                if (it.success) registration(login)
+                else viewState.showErrorDialog()
             }
-            .subscribeIgnoreResult()
+            .subscribe(
+                    { },
+                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+            ).addTo(compositeDisposable)
 
     fun onBackPressed() = router.exit()
 }
