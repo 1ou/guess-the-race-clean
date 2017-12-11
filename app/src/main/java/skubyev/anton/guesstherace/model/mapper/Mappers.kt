@@ -39,7 +39,6 @@ class NotificationEntityMapper @Inject constructor() : (Notification) -> Notific
     }
 }
 
-
 fun <From, To> convertCollection(fromCollection: Collection<From>?, itemMapper: (From) -> To?): List<To> {
     val result = mutableListOf<To>()
 

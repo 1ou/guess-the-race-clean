@@ -10,12 +10,7 @@ class AuthRepository @Inject constructor(
         private val api: GeneralApi,
         private val schedulers: SchedulersProvider
 ) {
-    fun isSignedIn() = authData.token != ""
-
-    fun requestToken(token: String) = api
-            .auth(token)
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
+    val isSignedIn get() = authData.token != ""
 
     fun registration(login: String) = api
             .registration(login)

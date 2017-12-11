@@ -7,7 +7,7 @@ import skubyev.anton.guesstherace.model.data.auth.AuthHolder
 class AuthHeaderInterceptor(private val authData: AuthHolder) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        authData.token?.let {
+        authData.token.let {
             if (authData.isToken) {
                 request = request.newBuilder().addHeader("Authorization", "Bearer " + it).build()
             } else {

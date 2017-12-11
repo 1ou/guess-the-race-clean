@@ -3,12 +3,10 @@ package skubyev.anton.guesstherace.presentation.rating
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
-import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.extension.addTo
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.interactor.rating.RatingInteractor
-import skubyev.anton.guesstherace.model.system.ResourceManager
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
 import skubyev.anton.guesstherace.presentation.global.GlobalMenuController
 import javax.inject.Inject
@@ -41,7 +39,9 @@ class RatingPresenter @Inject constructor(
         profileInteractor.getProfile(authInteractor.token())
                 .doOnSuccess {
                     if (it.allAmount > 0) {
-                        viewState.showRacistValue(100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt())
+                        val racistValue = 100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt()
+                        viewState.showRacistValue(racistValue)
+                        viewState.showRank(ratingInteractor.getRank(racistValue))
                     }
                 }
                 .subscribe(

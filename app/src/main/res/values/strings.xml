@@ -27,6 +27,11 @@
     <string name="rating_title">Rating</string>
     <string name="racist">Racist</string>
     <string name="anti_racist">Anti-racist</string>
+    <string name="rang_1">Martin Luther King</string>
+    <string name="rang_2">Nelson Rolihlahla Mandela</string>
+    <string name="rang_3">Donald John Trump</string>
+    <string name="rang_4">Member of Ku Klux Klan</string>
+    <string name="rang_5">Adolf Hitler</string>
 
     <!--Notifications screen-->
     <string name="notifications_title">Notifications</string>
