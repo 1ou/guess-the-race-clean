@@ -53,3 +53,9 @@
     @retrofit2.http.* <methods>;
 }
 # Retrofit 2.X>
+
+# Placeholder
+ -keepattributes *Annotation*
+  -keepclassmembers class ** {
+    @com.mindorks.placeholderview.annotations.** <methods>;
+  }

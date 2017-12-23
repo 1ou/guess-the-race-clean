@@ -8,5 +8,7 @@ data class Image constructor(
         val idImage: Int,
         val url: String,
         val urlAnswer: String,
+        val urlLandscape: String,
+        val urlAnswerLandscape: String,
         val race: String
 ) : Persistable

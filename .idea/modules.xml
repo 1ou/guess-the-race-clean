@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guess clean version.iml" filepath="$PROJECT_DIR$/guess clean version.iml" />
       <module fileurl="file://D:\Work_D\guess the race clean\guess clean version.iml" filepath="D:\Work_D\guess the race clean\guess clean version.iml" />
-      <module fileurl="file://$PROJECT_DIR$/guess the race clean.iml" filepath="$PROJECT_DIR$/guess the race clean.iml" />
+      <module fileurl="file://C:\Users\Computer\Documents\work\guess clean version\guess the race clean.iml" filepath="C:\Users\Computer\Documents\work\guess clean version\guess the race clean.iml" />
     </modules>
   </component>
 </project>

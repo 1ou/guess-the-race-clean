@@ -13,6 +13,8 @@ class ImageMapper @Inject constructor() : (ImagesResponse) -> Image {
             response.id,
             response.url,
             response.urlAnswer,
+            response.urlLandscape,
+            response.urlAnswerLandscape,
             response.race
     )
 }

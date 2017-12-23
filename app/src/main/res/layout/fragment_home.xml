@@ -52,7 +52,9 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -69,8 +71,7 @@
             android:id="@+id/raceImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="fitXY">
+            android:layout_gravity="center">
 
         </com.mindorks.placeholderview.SwipePlaceHolderView>
 
@@ -79,6 +80,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
+import skubyev.anton.guesstherace.BuildConfig.ORIGIN_IMAGES_ENDPOINT
 import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.presentation.home.HomePresenter
@@ -53,7 +55,8 @@ class HomeFragment : BaseFragment(), HomeView {
         raceImageView.getBuilder<SwipePlaceHolderView, SwipeViewBuilder<SwipePlaceHolderView>>()
                 .setDisplayViewCount(1)
                 .setSwipeDecor(SwipeDecor()
-                        .setPaddingTop(20)
+                        .setViewWidth(frameLayout.width)
+                        .setViewHeight(frameLayout.height)
                         .setRelativeScale(0.01f)
                         .setSwipeInMsgLayoutId(R.layout.swipe_white_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.swipe_black_msg_view))
@@ -120,14 +123,26 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun showImage(image: Image) {
         showAdvertising()
         raceImageView.removeAllViews()
+
+        val url: String
+        val currentOrientation = resources.configuration.orientation
+
+        url = if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            Picasso.with(context).load(ORIGIN_IMAGES_ENDPOINT + image.urlAnswer).into(answerImageView)
+            ORIGIN_IMAGES_ENDPOINT + image.url
+        } else {
+            Picasso.with(context).load(ORIGIN_IMAGES_ENDPOINT + image.urlAnswerLandscape).into(answerImageView)
+            ORIGIN_IMAGES_ENDPOINT + image.urlLandscape
+        }
+
         raceImageView.addView(GuessedCard(
                 context!!,
-                image.url,
+                url,
                 { presenter.clickedButton("white") },
                 { presenter.clickedButton("black") }
         ))
         answerImageView.visibility = View.INVISIBLE
-        Picasso.with(context).load(image.urlAnswer).into(answerImageView)
+
     }
 
     override fun showAnswer(url: String, state: Boolean) {
