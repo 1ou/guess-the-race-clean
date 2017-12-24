@@ -69,6 +69,10 @@
     <string name="rate_app">Rate App</string>
     <string name="your_message">Your message</string>
 
+    <!--About screen-->
+    <string name="about_title">About</string>
+    <string name="about_message">Why i created this application? </string>
+
     <!--Error messages-->
     <string name="check_internet_error">Nothing was found. Check the internet connection.</string>
     <string name="error_choose">Element selection error</string>
@@ -98,19 +102,19 @@
     <string name="rating_item">Rating</string>
     <string name="settings_item">Settings</string>
     <string name="feedback_item">Feedback</string>
+    <string name="about_item">About</string>
     <string name="exit">exit</string>
-    <string name="logout_question">Logout?</string>
+    <string name="logout">Logout</string>
+    <string name="logout_question">Are you really want to logout?</string>
 
     <!--General-->
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="save">Save</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
     <!--Admob-->
     <string name="admob_unit_id">ca-app-pub-6408266897351843/5980174013</string>
     <string name="admob_unit_id_bottom_banner">ca-app-pub-6408266897351843/3380318993</string>
-
-
 </resources>

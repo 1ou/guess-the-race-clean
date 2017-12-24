@@ -24,6 +24,7 @@ import skubyev.anton.guesstherace.presentation.launch.LaunchPresenter
 import skubyev.anton.guesstherace.presentation.launch.LaunchView
 import skubyev.anton.guesstherace.toothpick.DI
 import skubyev.anton.guesstherace.toothpick.module.MainActivityModule
+import skubyev.anton.guesstherace.ui.about.AboutFragment
 import skubyev.anton.guesstherace.ui.auth.AuthActivity
 import skubyev.anton.guesstherace.ui.comments.CommentsFragment
 import skubyev.anton.guesstherace.ui.drawer.NavigationDrawerFragment
@@ -114,6 +115,7 @@ class MainActivity : BaseActivity(), LaunchView {
             Screens.COMMENTS_SCREEN -> CommentsFragment.createNewInstance(data as Int)
             Screens.RATING_SCREEN -> RatingFragment()
             Screens.NOTIFICATIONS_SCREEN -> NotificationsFragment()
+            Screens.ABOUT_SCREEN -> AboutFragment()
             else -> null
         }
 
@@ -156,6 +158,7 @@ class MainActivity : BaseActivity(), LaunchView {
                     is SettingsFragment -> drawerFragment.onScreenChanged(NavigationDrawerView.MenuItem.SETTINGS)
                     is FeedbackFragment -> drawerFragment.onScreenChanged(NavigationDrawerView.MenuItem.FEEDBACK)
                     is RatingFragment -> drawerFragment.onScreenChanged(NavigationDrawerView.MenuItem.RATING)
+                    is AboutFragment -> drawerFragment.onScreenChanged(NavigationDrawerView.MenuItem.ABOUT)
                 }
                 enableNavDrawer(isNavDrawerAvailableForFragment(it))
             }
@@ -166,6 +169,7 @@ class MainActivity : BaseActivity(), LaunchView {
         is RatingFragment -> true
         is SettingsFragment -> false
         is FeedbackFragment -> false
+        is AboutFragment -> false
         else -> false
     }
     //end region

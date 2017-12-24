@@ -8,4 +8,5 @@ object Screens {
     const val FEEDBACK_SCREEN = "feedback screen"
     const val COMMENTS_SCREEN = "comments screen"
     const val NOTIFICATIONS_SCREEN = "notifications screen"
+    const val ABOUT_SCREEN = "about screen"
 }

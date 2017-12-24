@@ -11,7 +11,8 @@ interface NavigationDrawerView : MvpView {
         COMMENTS,
         SETTINGS,
         RATING,
-        FEEDBACK
+        FEEDBACK,
+        ABOUT
     }
 
     fun selectMenuItem(item: MenuItem)

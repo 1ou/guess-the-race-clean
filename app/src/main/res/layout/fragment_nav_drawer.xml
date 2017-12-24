@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:fillViewport="true">
 
@@ -26,6 +25,20 @@
                 app:srcCompat="@drawable/background_nav_header" />
 
             <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/greetingTV"
+                android:layout_alignStart="@+id/greetingTV"
+                android:layout_marginBottom="56dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/greetingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,9 +46,20 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="22dp"
                 android:layout_marginStart="16dp"
+                android:text="@string/hello_text"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="@string/hello_text"/>
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/logoutTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/greetingTV"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="18dp"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -53,21 +77,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_primary_color"
-                android:drawableStart="@drawable/selector_home_icon"
                 android:drawablePadding="16dp"
+                android:drawableStart="@drawable/selector_home_icon"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="@string/home_item"
                 android:textColor="@drawable/selector_primary_text_color"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/ratingMI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_primary_color"
-                android:drawableStart="@android:drawable/btn_star_big_on"
                 android:drawablePadding="16dp"
+                android:drawableStart="@android:drawable/btn_star_big_on"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="@string/rating_item"
@@ -79,33 +103,46 @@
                 android:layout_height="@dimen/divider_size"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/divider"/>
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/settingsMI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_primary_color"
-                android:drawableStart="@drawable/ic_settings"
                 android:drawablePadding="16dp"
+                android:drawableStart="@drawable/ic_settings"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="@string/settings_item"
                 android:textColor="@drawable/selector_primary_text_color"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/feedbackMI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_primary_color"
-                android:drawableStart="@drawable/ic_feedback"
                 android:drawablePadding="16dp"
+                android:drawableStart="@drawable/ic_feedback"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="@string/feedback_item"
                 android:textColor="@drawable/selector_primary_text_color"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/aboutMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_primary_color"
+                android:drawablePadding="16dp"
+                android:drawableStart="@android:drawable/ic_menu_info_details"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="@string/about_item"
+                android:textColor="@drawable/selector_primary_text_color"
+                android:textSize="14sp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

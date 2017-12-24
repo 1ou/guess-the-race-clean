@@ -31,9 +31,7 @@ class HomePresenter @Inject constructor(
 
     private lateinit var currentImage: Image
 
-    override fun onFirstViewAttach() {
-        loadImage()
-    }
+    override fun onFirstViewAttach() = loadImage()
 
     fun loadNotifications() = notificationsInteractor.getNotifications()
             .map { it.filter { it.show } }
@@ -60,7 +58,6 @@ class HomePresenter @Inject constructor(
             )
             .addTo(compositeDisposable)
 
-
     fun clickedButton(answer: String) {
         viewState.showAnswer(
                 currentImage.urlAnswer,
@@ -75,14 +72,14 @@ class HomePresenter @Inject constructor(
                 loadImage()
             }, 3000)
 
-
     fun appendRating(state: Boolean) = profileInteractor.appendRating(
             state
     )
             .subscribe(
                     { },
                     { errorHandler.proceed(it, { viewState.showMessage(it) }) }
-            ).addTo(compositeDisposable)
+            )
+            .addTo(compositeDisposable)
 
     fun isShowAdv() = (0..100).random() > 92
 

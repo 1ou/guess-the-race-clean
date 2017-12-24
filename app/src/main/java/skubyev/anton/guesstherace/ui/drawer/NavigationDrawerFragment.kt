@@ -53,11 +53,23 @@ class NavigationDrawerFragment : BaseFragment(), NavigationDrawerView, ConfirmDi
         feedbackMI.tag = NavigationDrawerView.MenuItem.FEEDBACK
         settingsMI.tag = NavigationDrawerView.MenuItem.SETTINGS
         ratingMI.tag = NavigationDrawerView.MenuItem.RATING
+        aboutMI.tag = NavigationDrawerView.MenuItem.ABOUT
 
         homeMI.setOnClickListener(itemClickListener)
         feedbackMI.setOnClickListener(itemClickListener)
         settingsMI.setOnClickListener(itemClickListener)
         ratingMI.setOnClickListener(itemClickListener)
+        aboutMI.setOnClickListener(itemClickListener)
+
+        logoutTV.setOnClickListener {
+            ConfirmDialog.newInstants(
+                    title = getString(R.string.logout),
+                    msg = getString(R.string.logout_question),
+                    positive = getString(R.string.ok),
+                    negative = getString(R.string.cancel),
+                    tag = CONFIRM_LOGOUT_TAG
+            ).show(childFragmentManager, CONFIRM_LOGOUT_TAG)
+        }
     }
 
     override fun selectMenuItem(item: NavigationDrawerView.MenuItem) {

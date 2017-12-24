@@ -40,6 +40,7 @@ class NavigationDrawerPresenter @Inject constructor(
                 SETTINGS -> router.navigateTo(Screens.SETTINGS_SCREEN)
                 FEEDBACK -> router.navigateTo(Screens.FEEDBACK_SCREEN)
                 RATING -> router.navigateTo(Screens.RATING_SCREEN)
+                ABOUT -> router.navigateTo(Screens.ABOUT_SCREEN)
                 else -> TODO()
             }
         }

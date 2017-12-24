@@ -39,8 +39,6 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
     private lateinit var interstitialAd: InterstitialAd
 
-    private lateinit var interstitialBottomAd: InterstitialAd
-
     @InjectPresenter lateinit var presenter: HomePresenter
 
     companion object {
@@ -62,6 +60,8 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
         raceImageView.getBuilder<SwipePlaceHolderView, SwipeViewBuilder<SwipePlaceHolderView>>()
                 .setDisplayViewCount(1)
                 .setSwipeDecor(SwipeDecor()
+                        .setSwipeAnimFactor(100f)
+                        .setSwipeAnimTime(300)
                         .setSwipeInMsgLayoutId(R.layout.swipe_white_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.swipe_black_msg_view))
 
@@ -71,6 +71,7 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
         notificationsIW.isClickable = true
         notificationsIW.setOnClickListener { presenter.clickedNotifications() }
+        cart_badge.setOnClickListener { presenter.clickedNotifications() }
 
         initAdv()
     }
@@ -108,16 +109,6 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
         interstitialAd = InterstitialAd(context)
         interstitialAd.adUnitId = getString(R.string.admob_unit_id)
         interstitialAd.loadAd(AdRequest.Builder().build())
-
-        interstitialBottomAd = InterstitialAd(context)
-        interstitialBottomAd.adUnitId = getString(R.string.admob_unit_id_bottom_banner)
-        interstitialBottomAd.loadAd(AdRequest.Builder().build())
-
-        if (interstitialBottomAd.isLoaded) {
-            interstitialBottomAd.show()
-        } else {
-            Timber.d("TAG", "The interstitial wasn't loaded yet.")
-        }
     }
 
     override fun showImagesOverInfo() {

@@ -27,7 +27,7 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
 
     override val dialogConfirm: (tag: String) -> Unit = { tag ->
         when (tag) {
-            CONFIRM_WATCHED_IMAGES_TAG -> presenter.clearFavorite()
+            CONFIRM_WATCHED_IMAGES_TAG -> presenter.clearWatchedImages()
         }
     }
 
