@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,8 +23,19 @@
                 android:layout_alignParentTop="true"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/background_nav_header"/>
+                app:srcCompat="@drawable/background_nav_header" />
 
+            <TextView
+                android:id="@+id/greetingTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="22dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:text="@string/hello_text"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -44,7 +56,7 @@
                 android:drawableStart="@drawable/selector_home_icon"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:text="@string/home_item"
                 android:textColor="@drawable/selector_primary_text_color"
                 android:textSize="14sp"/>
@@ -57,7 +69,7 @@
                 android:drawableStart="@android:drawable/btn_star_big_on"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:text="@string/rating_item"
                 android:textColor="@drawable/selector_primary_text_color"
                 android:textSize="14sp" />
@@ -77,7 +89,7 @@
                 android:drawableStart="@drawable/ic_settings"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:text="@string/settings_item"
                 android:textColor="@drawable/selector_primary_text_color"
                 android:textSize="14sp"/>
@@ -90,7 +102,7 @@
                 android:drawableStart="@drawable/ic_feedback"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:text="@string/feedback_item"
                 android:textColor="@drawable/selector_primary_text_color"
                 android:textSize="14sp"/>

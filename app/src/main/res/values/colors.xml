@@ -30,4 +30,5 @@
     <color name="colorFocused">#bbdefb</color>
     <color name="blue">#046fd0</color>
     <color name="whiteGray">#a3a3a3</color>
+    <color name="black">#000000</color>
 </resources>

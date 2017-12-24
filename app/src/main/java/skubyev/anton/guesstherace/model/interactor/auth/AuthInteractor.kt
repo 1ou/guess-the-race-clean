@@ -13,7 +13,7 @@ class AuthInteractor @Inject constructor(
                     login
             )
             .doOnSuccess {
-                authRepository.saveAuthData(it.token, true, it.id)
+                authRepository.saveAuthData(it.token, true, it.id, it.name)
             }
 
     fun testLogin(login: String) = authRepository
@@ -21,9 +21,9 @@ class AuthInteractor @Inject constructor(
                     login
             )
 
-    fun token() = authRepository.token()
-
     fun idUser() = authRepository.idUser()
+
+    fun userName() = authRepository.userName()
 
     fun logout() = authRepository.clearAuthData()
 }

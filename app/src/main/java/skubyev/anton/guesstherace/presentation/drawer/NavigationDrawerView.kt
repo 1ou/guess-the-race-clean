@@ -15,4 +15,6 @@ interface NavigationDrawerView : MvpView {
     }
 
     fun selectMenuItem(item: MenuItem)
+
+    fun showGreeting(userName: String)
 }

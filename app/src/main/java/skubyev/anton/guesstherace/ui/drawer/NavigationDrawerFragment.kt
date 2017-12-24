@@ -1,5 +1,6 @@
 package skubyev.anton.guesstherace.ui.drawer
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,9 @@ import skubyev.anton.guesstherace.ui.launch.MainActivity
 import toothpick.Toothpick
 
 class NavigationDrawerFragment : BaseFragment(), NavigationDrawerView, ConfirmDialog.OnClickListener {
+
     override val layoutRes = R.layout.fragment_nav_drawer
+
     private var mainActivity: MainActivity? = null
 
     private val itemClickListener = { view: View ->
@@ -61,6 +64,11 @@ class NavigationDrawerFragment : BaseFragment(), NavigationDrawerView, ConfirmDi
         (0 until navDrawerMenuContainer.childCount)
                 .map { navDrawerMenuContainer.getChildAt(it) }
                 .forEach { menuItem -> menuItem.tag?.let { menuItem.isSelected = it == item } }
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun showGreeting(userName: String) {
+        greetingTV.text = greetingTV.text.toString() + " " + userName + "!"
     }
 
     fun onScreenChanged(item: NavigationDrawerView.MenuItem) {

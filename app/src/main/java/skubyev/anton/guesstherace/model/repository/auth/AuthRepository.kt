@@ -25,18 +25,24 @@ class AuthRepository @Inject constructor(
     fun saveAuthData(
             token: String,
             isAuthToken: Boolean,
-            idUser: Int
+            idUser: Int,
+            userName: String
     ) {
         authData.token = token
         authData.isToken = isAuthToken
         authData.idUser = idUser
+        authData.userName = userName
     }
 
     fun token() = authData.token
 
     fun idUser() = authData.idUser
 
+    fun userName() = authData.userName
+
     fun clearAuthData() {
         authData.token = ""
+        authData.userName = ""
+        authData.idUser = 0
     }
 }

@@ -11,6 +11,7 @@ class Prefs @Inject constructor(
     private val KEY_TOKEN = "ad_token"
     private val KEY_IS_EXISTS = "ad_is_exists"
     private val ID_USER = "id_user"
+    private val USER_NAME = "user_name"
 
     private fun getSharedPreferences(prefsName: String)
             = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
@@ -31,5 +32,11 @@ class Prefs @Inject constructor(
         get() =  getSharedPreferences(AUTH_DATA).getInt(ID_USER, -1)
         set(value) {
             getSharedPreferences(AUTH_DATA).edit().putInt(ID_USER, value).apply()
+        }
+
+    override var userName: String
+        get() = getSharedPreferences(AUTH_DATA).getString(USER_NAME, "")
+        set(value) {
+            getSharedPreferences(AUTH_DATA).edit().putString(USER_NAME, value).apply()
         }
 }

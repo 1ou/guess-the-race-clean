@@ -16,12 +16,15 @@ import javax.inject.Inject
 class NavigationDrawerPresenter @Inject constructor(
         private val router: Router,
         private val menuController: GlobalMenuController,
-        private val authInteractor: AuthInteractor,
-        private val errorHandler: ErrorHandler
+        private val authInteractor: AuthInteractor
 ) : MvpPresenter<NavigationDrawerView>() {
 
     private var currentSelectedItem: MenuItem? = null
     private val compositeDisposable = CompositeDisposable()
+
+    override fun onFirstViewAttach() {
+        viewState.showGreeting(authInteractor.userName())
+    }
 
     fun onScreenChanged(item: MenuItem) {
         menuController.close()
