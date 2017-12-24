@@ -15,7 +15,6 @@ import javax.inject.Inject
 class RatingPresenter @Inject constructor(
         private val ratingInteractor: RatingInteractor,
         private val profileInteractor: ProfileInteractor,
-        private val authInteractor: AuthInteractor,
         private val errorHandler: ErrorHandler,
         private val menuController: GlobalMenuController
 ) : MvpPresenter<RatingView>() {
@@ -23,7 +22,7 @@ class RatingPresenter @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
 
     override fun onFirstViewAttach() {
-        ratingInteractor.getRating(authInteractor.token())
+        ratingInteractor.getRating()
                 .doOnSuccess { rating ->
                     if (rating.isEmpty()) viewState.showEmptyView()
                     else viewState.showRating(rating)
@@ -36,7 +35,7 @@ class RatingPresenter @Inject constructor(
                 )
                 .addTo(compositeDisposable)
 
-        profileInteractor.getProfile(authInteractor.token())
+        profileInteractor.getProfile()
                 .doOnSuccess {
                     if (it.allAmount > 0) {
                         val racistValue = 100 - (it.guessed.toDouble() / it.allAmount.toDouble() * 100).toInt()

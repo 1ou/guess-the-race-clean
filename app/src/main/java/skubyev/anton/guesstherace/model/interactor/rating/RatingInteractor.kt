@@ -10,7 +10,7 @@ class RatingInteractor @Inject constructor(
         private val ratingRepository: RatingRepository,
         private val resourceManager: ResourceManager
 ) {
-    fun getRating(token: String) = ratingRepository.getUsersRating(token)
+    fun getRating() = ratingRepository.getUsersRating()
 
     fun getRank(value: Int): Rank = when(value) {
         in 0..20 -> Rank(resourceManager.getString(R.string.rang_1), "http://wooa.ru/android/determinace/backend/rank/rank1.jpg")

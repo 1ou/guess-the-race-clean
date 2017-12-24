@@ -8,14 +8,13 @@ class ProfileRepository @Inject constructor(
         private val api: GeneralApi,
         private val schedulers: SchedulersProvider
 ) {
-    fun getProfile(token: String) = api.getProfile(token)
+    fun getProfile() = api.getProfile()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
 
     fun appendRating(
-            token: String,
             state: Boolean
-    ) = api.appendRating(token, state)
+    ) = api.appendRating(state)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
 }

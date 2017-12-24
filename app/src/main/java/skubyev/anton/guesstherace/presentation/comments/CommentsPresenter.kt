@@ -37,7 +37,6 @@ class CommentsPresenter @Inject constructor(
     }
 
     fun updateComments() = commentsInteractor.getComments(
-            authInteractor.token(),
             idImage
     )
             .doOnSuccess { comments ->
@@ -53,7 +52,6 @@ class CommentsPresenter @Inject constructor(
             .addTo(compositeDisposable)
 
     fun addComment(msg: String) = commentsInteractor.addComment(
-            authInteractor.token(),
             msg,
             idImage,
             authInteractor.idUser()

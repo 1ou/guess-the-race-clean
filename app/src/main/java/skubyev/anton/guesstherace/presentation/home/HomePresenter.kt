@@ -23,7 +23,6 @@ class HomePresenter @Inject constructor(
         private val router: Router,
         private val menuController: GlobalMenuController,
         private val homeInteractor: HomeInteractor,
-        private val authInteractor: AuthInteractor,
         private val notificationsInteractor: NotificationsInteractor,
         private val profileInteractor: ProfileInteractor,
         private val errorHandler: ErrorHandler
@@ -47,7 +46,7 @@ class HomePresenter @Inject constructor(
     }
 
     private fun loadImage() {
-        homeInteractor.getImage(authInteractor.token())
+        homeInteractor.getImage()
                 .doOnSuccess { image ->
                     currentImage = image
                     viewState.showImage(image)
@@ -77,7 +76,6 @@ class HomePresenter @Inject constructor(
     }
 
     fun appendRating(state: Boolean) = profileInteractor.appendRating(
-            authInteractor.token(),
             state
     )
             .subscribe(

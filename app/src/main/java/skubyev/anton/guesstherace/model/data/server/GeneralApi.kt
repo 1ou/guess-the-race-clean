@@ -22,41 +22,27 @@ interface GeneralApi {
 
     @GET("$API_PATH/handler.php?type=appendrating")
     fun appendRating(
-            @Query("token") token: String,
             @Query("guessed") guessed: Boolean
     ): Single<ProfileResponse>
 
     @GET("$API_PATH/handler.php?type=images")
-    fun getImages(
-            @Query("token") token: String
-    ): Single<List<ImagesResponse>>
+    fun getImages(): Single<List<ImagesResponse>>
 
     @GET("handler.php?type=view_comment")
     fun getComments(
-            @Query("token") token: String,
             @Query("id") id: Int
     ): Single<List<CommentResponse>>
 
     @GET("handler.php?type=add_comment")
     fun addComment(
-            @Query("token") token: String,
             @Query("comment") comment: String,
             @Query("idImage") idImage: Int,
             @Query("idAuthor") idAuthor: Int
     ): Single<BaseResponse>
 
     @GET("$API_PATH/handler.php?type=profile")
-    fun auth(
-            @Query("token") token: String
-    ): Single<ProfileResponse>
-
-    @GET("$API_PATH/handler.php?type=profile")
-    fun getProfile(
-            @Query("token") token: String
-    ): Single<ProfileResponse>
+    fun getProfile(): Single<ProfileResponse>
 
     @GET("$API_PATH/handler.php?type=rating")
-    fun getUsersRating(
-            @Query("token") token: String
-    ): Single<List<RatingResponse>>
+    fun getUsersRating(): Single<List<RatingResponse>>
 }

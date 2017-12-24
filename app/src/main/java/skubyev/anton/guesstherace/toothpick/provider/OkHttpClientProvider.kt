@@ -19,7 +19,7 @@ class OkHttpClientProvider @Inject constructor(
     init {
         val httpClientBuilder = OkHttpClient.Builder()
 
-//        httpClientBuilder.addNetworkInterceptor(AuthHeaderInterceptor(authData))
+        httpClientBuilder.addNetworkInterceptor(AuthHeaderInterceptor(authData))
         httpClientBuilder.addNetworkInterceptor(ErrorResponseInterceptor())
         httpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
 

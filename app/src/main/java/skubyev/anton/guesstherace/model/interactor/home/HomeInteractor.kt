@@ -11,9 +11,9 @@ class HomeInteractor @Inject constructor(
         private val watchedImagesRepository: WatchedImagesRepository
 ) {
 
-    fun getImage(token: String) = watchedImagesRepository.getWatchedImages()
+    fun getImage() = watchedImagesRepository.getWatchedImages()
             .map { it.map { it.idImage } }
-            .flatMap { return@flatMap imagesRepository.getImage(token, it) }
+            .flatMap { return@flatMap imagesRepository.getImage(it) }
 
     fun saveWatchedImage(
             image: Image
