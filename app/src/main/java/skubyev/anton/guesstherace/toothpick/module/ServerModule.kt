@@ -6,7 +6,7 @@ import okhttp3.OkHttpClient
 import skubyev.anton.guesstherace.model.data.server.GeneralApi
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.comments.CommentsInteractor
-import skubyev.anton.guesstherace.model.interactor.home.HomeInteractor
+import skubyev.anton.guesstherace.model.interactor.image.ImageInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.interactor.rating.RatingInteractor
@@ -40,10 +40,10 @@ class ServerModule(serverUrl: String) : Module() {
         bind(ErrorHandler::class.java)
 
         //Images
-        bind(ImagesRepository::class.java)
-
         //Watched images
+        bind(ImagesRepository::class.java)
         bind(WatchedImagesRepository::class.java)
+        bind(ImageInteractor::class.java)
 
         //Rating
         bind(RatingRepository::class.java)
@@ -59,9 +59,6 @@ class ServerModule(serverUrl: String) : Module() {
 
         //Settings
         bind(SettingsInteractor::class.java)
-
-        //Home
-        bind(HomeInteractor::class.java)
 
         //Notifications
         bind(NotificationsRepository::class.java)

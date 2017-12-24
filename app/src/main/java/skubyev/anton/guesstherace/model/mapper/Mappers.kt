@@ -4,6 +4,8 @@ import skubyev.anton.guesstherace.entity.ImagesResponse
 import skubyev.anton.guesstherace.entity.Notification
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.data.storage.NotificationEntity
+import skubyev.anton.guesstherace.model.data.storage.WatchedImage
+import skubyev.anton.guesstherace.model.data.storage.WatchedImageEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -30,7 +32,7 @@ class NotificationMapper @Inject constructor() : (NotificationEntity) -> Notific
 }
 
 @Singleton
-class NotificationEntityMapper @Inject constructor() : (Notification) -> NotificationEntity{
+class NotificationEntityMapper @Inject constructor() : (Notification) -> NotificationEntity {
     override fun invoke(response: Notification): NotificationEntity {
         val notification = NotificationEntity()
         notification.id = response.id
@@ -38,6 +40,15 @@ class NotificationEntityMapper @Inject constructor() : (Notification) -> Notific
         notification.message = response.message
         notification.show = response.show
         return notification
+    }
+}
+
+@Singleton
+class WatchedImagesEntityMapper @Inject constructor() : (Image) -> WatchedImageEntity {
+    override fun invoke(response: Image): WatchedImageEntity {
+        val watchedImage = WatchedImageEntity()
+        watchedImage.idImage = response.idImage
+        return watchedImage
     }
 }
 

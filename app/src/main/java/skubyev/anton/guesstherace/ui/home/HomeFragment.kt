@@ -26,11 +26,14 @@ import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.presentation.home.HomePresenter
 import skubyev.anton.guesstherace.presentation.home.HomeView
 import skubyev.anton.guesstherace.toothpick.DI
+import skubyev.anton.guesstherace.ui.comments.CommentsFragment
 import skubyev.anton.guesstherace.ui.global.BaseFragment
+import skubyev.anton.guesstherace.ui.global.ConfirmDialog
+import skubyev.anton.guesstherace.ui.global.InfoDialog
 import timber.log.Timber
 import toothpick.Toothpick
 
-class HomeFragment : BaseFragment(), HomeView {
+class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
     override val layoutRes = R.layout.fragment_home
 
@@ -39,6 +42,10 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var interstitialBottomAd: InterstitialAd
 
     @InjectPresenter lateinit var presenter: HomePresenter
+
+    companion object {
+        private const val IMAGE_OVER_TAG = "image_over_tag"
+    }
 
     @ProvidePresenter
     fun providePresenter(): HomePresenter {
@@ -55,9 +62,6 @@ class HomeFragment : BaseFragment(), HomeView {
         raceImageView.getBuilder<SwipePlaceHolderView, SwipeViewBuilder<SwipePlaceHolderView>>()
                 .setDisplayViewCount(1)
                 .setSwipeDecor(SwipeDecor()
-                        .setViewWidth(frameLayout.width)
-                        .setViewHeight(frameLayout.height)
-                        .setRelativeScale(0.01f)
                         .setSwipeInMsgLayoutId(R.layout.swipe_white_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.swipe_black_msg_view))
 
@@ -113,6 +117,25 @@ class HomeFragment : BaseFragment(), HomeView {
             interstitialBottomAd.show()
         } else {
             Timber.d("TAG", "The interstitial wasn't loaded yet.")
+        }
+    }
+
+    override fun showImagesOverInfo() {
+        ConfirmDialog.newInstants(
+                getString(R.string.images_over_title),
+                getString(R.string.images_over_text),
+                getString(R.string.ok),
+                getString(R.string.cancel),
+                IMAGE_OVER_TAG
+        ).show(childFragmentManager, IMAGE_OVER_TAG)
+    }
+
+    override val dialogConfirm: (tag: String) -> Unit = { tag ->
+        when (tag) {
+            IMAGE_OVER_TAG -> {
+                presenter.clickedSettings()
+            }
+            else -> showMessage(getString(R.string.error_choose))
         }
     }
 

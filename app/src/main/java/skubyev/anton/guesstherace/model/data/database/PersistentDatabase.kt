@@ -11,7 +11,7 @@ import skubyev.anton.guesstherace.model.data.storage.Image
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
-open class PersistentDatabase<T : Any> @Inject constructor(val type: KClass<T>, val store: KotlinReactiveEntityStore<T>) : Database<T> {
+open class PersistentDatabase<T : Any> @Inject constructor(val type: KClass<T>, private val store: KotlinReactiveEntityStore<T>) : Database<T> {
 
     override fun addResult(item: T): Completable = store.insert(item).toCompletable()
 
@@ -27,6 +27,8 @@ open class PersistentDatabase<T : Any> @Inject constructor(val type: KClass<T>, 
 
     override fun getFirstElement(): Single<T> = (store select type).limit(1).get().observable().firstOrError()
 
+    fun getSize(): Int = (store select type).get().count()
+
     // Cache
     fun findByCache(str: String): Single<T> = (store select type).where(Cache::name eq str).get().observable().firstOrError()
 
@@ -40,5 +42,4 @@ open class PersistentDatabase<T : Any> @Inject constructor(val type: KClass<T>, 
             .get()
             .observable()
             .firstOrError()
-
 }

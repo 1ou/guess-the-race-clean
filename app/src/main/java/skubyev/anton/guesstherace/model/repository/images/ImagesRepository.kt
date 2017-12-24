@@ -19,7 +19,9 @@ class ImagesRepository @Inject constructor(
         private val schedulers: SchedulersProvider,
         private val mapper: ImageMapper
 ) {
-    private val expirationTime: Long = 1000 * 60 * 60 * 24 // 24 h
+    private val expirationTime: Long = 1000 * 60 * 60 * 12 // 12 h
+
+    fun getImagesSize() = database.getSize()
 
     fun getImage(watchedImages: List<Int>) = cache.findByCache(database.type.toString())
             .flatMap { cache ->

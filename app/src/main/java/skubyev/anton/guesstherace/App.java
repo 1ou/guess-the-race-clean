@@ -67,8 +67,7 @@ public class App extends MultiDexApplication {
 
     private void initCalligraphy() {
         CalligraphyConfig.initDefault((new Builder())
-                .setDefaultFontPath(this.getString(R.string.font_main_regular))
-                .setFontAttrId(R.string.font_main_medium)
+                .setFontAttrId(R.string.font_path)
                 .build()
         );
     }

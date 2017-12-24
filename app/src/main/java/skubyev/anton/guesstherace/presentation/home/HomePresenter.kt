@@ -10,8 +10,7 @@ import skubyev.anton.guesstherace.extension.addTo
 import skubyev.anton.guesstherace.extension.random
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
 import skubyev.anton.guesstherace.model.data.storage.Image
-import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
-import skubyev.anton.guesstherace.model.interactor.home.HomeInteractor
+import skubyev.anton.guesstherace.model.interactor.image.ImageInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
@@ -22,7 +21,7 @@ import javax.inject.Inject
 class HomePresenter @Inject constructor(
         private val router: Router,
         private val menuController: GlobalMenuController,
-        private val homeInteractor: HomeInteractor,
+        private val imageInteractor: ImageInteractor,
         private val notificationsInteractor: NotificationsInteractor,
         private val profileInteractor: ProfileInteractor,
         private val errorHandler: ErrorHandler
@@ -45,35 +44,37 @@ class HomePresenter @Inject constructor(
         compositeDisposable.dispose()
     }
 
-    private fun loadImage() {
-        homeInteractor.getImage()
-                .doOnSuccess { image ->
-                    currentImage = image
-                    viewState.showImage(image)
+    private fun loadImage() = imageInteractor.getImage()
+            .doOnSuccess {
+                if (it != null) {
+                    currentImage = it
+                    viewState.showImage(it)
                 }
-                .doOnSubscribe { viewState.showProgress(true) }
-                .doAfterTerminate { viewState.showProgress(false) }
-                .subscribe(
-                        { },
-                        { errorHandler.proceed(it, { viewState.showMessage(it) }) }
-                )
-                .addTo(compositeDisposable)
-    }
+            }
+            .doOnError { viewState.showImagesOverInfo() }
+            .doOnSubscribe { viewState.showProgress(true) }
+            .doAfterTerminate { viewState.showProgress(false) }
+            .subscribe(
+                    { },
+                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+            )
+            .addTo(compositeDisposable)
+
 
     fun clickedButton(answer: String) {
         viewState.showAnswer(
                 currentImage.urlAnswer,
                 currentImage.race == answer
         )
-        homeInteractor.saveWatchedImage(currentImage).subscribeIgnoreResult()
+        imageInteractor.saveWatchedImage(currentImage).subscribeIgnoreResult()
         loadNextImage()
     }
 
-    private fun loadNextImage() {
-        Handler().postDelayed({
-            loadImage()
-        }, 3000)
-    }
+    private fun loadNextImage() =
+            Handler().postDelayed({
+                loadImage()
+            }, 3000)
+
 
     fun appendRating(state: Boolean) = profileInteractor.appendRating(
             state
@@ -83,11 +84,13 @@ class HomePresenter @Inject constructor(
                     { errorHandler.proceed(it, { viewState.showMessage(it) }) }
             ).addTo(compositeDisposable)
 
-    fun isShowAdv() = homeInteractor.isShowAdv()
+    fun isShowAdv() = (0..100).random() > 92
 
     fun clickedDiscuss() = router.navigateTo(Screens.COMMENTS_SCREEN, currentImage.idImage)
 
     fun clickedNotifications() = router.navigateTo(Screens.NOTIFICATIONS_SCREEN)
+
+    fun clickedSettings() = router.navigateTo(Screens.SETTINGS_SCREEN)
 
     fun onBackPressed() = router.finishChain()
 

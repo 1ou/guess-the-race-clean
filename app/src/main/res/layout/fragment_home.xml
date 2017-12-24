@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/cart_badge"
                 android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_height="24dp"
                 android:layout_gravity="end|center_vertical"
                 android:background="@drawable/badge_background"
                 android:gravity="center"
@@ -69,9 +69,7 @@
             android:id="@+id/raceImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center">
-
-        </com.mindorks.placeholderview.SwipePlaceHolderView>
+            android:layout_gravity="center" />
 
         <nl.dionsegijn.konfetti.KonfettiView
             android:id="@+id/viewKonfetti"

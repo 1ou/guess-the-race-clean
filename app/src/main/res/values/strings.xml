@@ -15,6 +15,8 @@
     <string name="white">White</string>
     <string name="you_guessed">You guessed</string>
     <string name="you_not_guessed">You did not guess</string>
+    <string name="images_over_title">Images are over</string>
+    <string name="images_over_text">All images are over. If you want to play again press OK and clear watched images.</string>
 
     <!--Comments screen-->
     <string name="comments_title">Comments</string>
@@ -87,8 +89,10 @@
     <string name="font_main_regular">fonts/OpenSans-Light.ttf</string>
     <string name="font_main_medium">fonts/OpenSans-Regular.ttf</string>
     <string name="font_main_bold">fonts/OpenSans-Bold.ttf</string>
+    <string name="font_path">fonts</string>
 
     <!--Navigation drawer-->
+    <string name="hello_text">Hello, </string>
     <string name="header">Great Deal Compare</string>
     <string name="home_item">Home</string>
     <string name="rating_item">Rating</string>

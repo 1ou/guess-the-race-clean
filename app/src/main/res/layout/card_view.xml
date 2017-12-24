@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,9 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical"
-        app:cardCornerRadius="7dp"
-        app:cardElevation="4dp">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView"
@@ -26,5 +23,4 @@
             android:layout_gravity="center"
             android:visibility="invisible" />
     </android.support.v7.widget.CardView>
-
-</FrameLayout>
+</RelativeLayout>

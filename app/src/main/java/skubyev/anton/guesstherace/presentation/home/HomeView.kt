@@ -14,6 +14,9 @@ interface HomeView : MvpView {
     fun showNotifications(count: Int)
 
     @StateStrategyType(SkipStrategy::class)
+    fun showImagesOverInfo()
+
+    @StateStrategyType(SkipStrategy::class)
     fun showAnswer(url: String, state: Boolean)
 
     @StateStrategyType(OneExecutionStateStrategy::class)

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "384865631620-mpbrfapqo27tlh6f60ru4om6ahoif4ll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "skubyev.anton.guesstherace",
+            "certificate_hash": "de884eeac001f543d4fec37c4c394f952204c315"
+          }
+        },
+        {
           "client_id": "384865631620-i74n20tkrblhgkp67jjil28df1v061mm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
