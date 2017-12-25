@@ -13,6 +13,10 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeOut
 import com.squareup.picasso.Picasso
 import skubyev.anton.guesstherace.R
 import timber.log.Timber
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AlphaAnimation
+
+
 
 @Layout(R.layout.card_view)
 class GuessedCard(
@@ -29,6 +33,10 @@ class GuessedCard(
 
     private var target = object: com.squareup.picasso.Target {
         override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
+            val fadeOut = AlphaAnimation(0f, 1f)
+            fadeOut.interpolator = AccelerateInterpolator()
+            fadeOut.duration = 1000
+            imageView.startAnimation(fadeOut)
             imageView.setImageBitmap(bitmap)
             progressBar.visibility = android.view.View.INVISIBLE
             Timber.e("IMAGE SUCCESS.")

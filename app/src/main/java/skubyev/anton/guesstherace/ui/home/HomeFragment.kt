@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
                 .setDisplayViewCount(1)
                 .setSwipeDecor(SwipeDecor()
                         .setSwipeAnimFactor(100f)
-                        .setSwipeAnimTime(300)
+                        .setSwipeAnimTime(150)
                         .setSwipeInMsgLayoutId(R.layout.swipe_white_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.swipe_black_msg_view))
 

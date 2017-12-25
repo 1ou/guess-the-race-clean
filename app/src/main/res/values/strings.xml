@@ -71,7 +71,7 @@
 
     <!--About screen-->
     <string name="about_title">About</string>
-    <string name="about_message">Why i created this application? </string>
+    <string name="about_message">This application was created for my diploma. I have to collect statistics about people. How they can identify race of people only on background. There is no racism here. If you have some pretension you can text me. But i hope that you spend good time in the application. And it\'ll be really great if you\'ll rate this app and tell to you friends about it.</string>
 
     <!--Error messages-->
     <string name="check_internet_error">Nothing was found. Check the internet connection.</string>
