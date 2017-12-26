@@ -18,7 +18,9 @@ class LaunchPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         if (authInteractor.isSignedIn()) router.newRootScreen(Screens.MAIN_SCREEN)
         else router.newRootScreen(Screens.AUTH_SCREEN)
+    }
 
+    fun playMusic() {
         if (settingsInteractor.isPlayMusic()) viewState.startMusic()
     }
 

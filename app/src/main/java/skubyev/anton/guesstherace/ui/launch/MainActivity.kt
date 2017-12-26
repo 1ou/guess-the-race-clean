@@ -1,8 +1,11 @@
 package skubyev.anton.guesstherace.ui.launch
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
@@ -41,7 +44,6 @@ import skubyev.anton.guesstherace.ui.settings.SettingsFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
-
 class MainActivity : BaseActivity(), LaunchView {
 
     @Inject lateinit var navigationHolder: NavigatorHolder
@@ -52,6 +54,20 @@ class MainActivity : BaseActivity(), LaunchView {
     override val layoutRes = R.layout.activity_main
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    private var bound = false
+    private var musicService: MusicService? = null
+
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, binder: IBinder) {
+            val binder = binder as MusicService.MusicBinder
+            musicService = binder.service
+            bound = true
+        }
+        override fun onServiceDisconnected(name: ComponentName) {
+            bound = false
+        }
+    }
 
     @InjectPresenter lateinit var presenter: LaunchPresenter
 
@@ -75,6 +91,11 @@ class MainActivity : BaseActivity(), LaunchView {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.playMusic()
+    }
+
     override fun onResumeFragments() {
         super.onResumeFragments()
         menuStateDisposable = menuController.state.subscribe { openNavDrawer(it) }
@@ -87,9 +108,22 @@ class MainActivity : BaseActivity(), LaunchView {
         super.onPause()
     }
 
+    override fun onStop() {
+        super.onStop()
+        if (bound) {
+            musicService?.pauseMusic()
+            unbindService(connection)
+            bound = false
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        if (isFinishing) Toothpick.closeScope(DI.MAIN_ACTIVITY_SCOPE)
+
+        if (isFinishing) {
+            Toothpick.closeScope(DI.MAIN_ACTIVITY_SCOPE)
+            stopService(intent)
+        }
     }
 
     private fun initFirebaseAnalytics() {
@@ -100,9 +134,12 @@ class MainActivity : BaseActivity(), LaunchView {
         val intent = Intent(this, MusicService::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(intent)
+            bindService(intent, connection, BIND_NOT_FOREGROUND)
         } else {
             startService(intent)
+            bindService(intent, connection, BIND_NOT_FOREGROUND)
         }
+        musicService?.playMusic()
     }
 
     private val navigator = object : SupportAppNavigator(this, R.id.mainContainer) {

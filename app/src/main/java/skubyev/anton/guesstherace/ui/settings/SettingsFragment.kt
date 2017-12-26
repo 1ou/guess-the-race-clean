@@ -1,11 +1,14 @@
 package skubyev.anton.guesstherace.ui.settings
 
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
+import android.content.Context.BIND_AUTO_CREATE
 import android.content.Intent
+import android.content.ServiceConnection
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startForegroundService
+import android.os.IBinder
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -24,9 +27,19 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
         private val CONFIRM_WATCHED_IMAGES_TAG = "confirm_watched_images_tag"
     }
 
+    private var musicService: MusicService? = null
+
     override val layoutRes = R.layout.fragment_settings
 
     @InjectPresenter lateinit var presenter: SettingsPresenter
+
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, binder: IBinder) {
+            val binder = binder as MusicService.MusicBinder
+            musicService = binder.service
+        }
+        override fun onServiceDisconnected(name: ComponentName) {}
+    }
 
     override val dialogConfirm: (tag: String) -> Unit = { tag ->
         when (tag) {
@@ -75,18 +88,25 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
 
         musicSwitch.isChecked = presenter.isMusicTurnOn()
 
+        val intent = Intent(context, MusicService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            activity?.startForegroundService(intent)
+            activity?.bindService(intent, connection, BIND_AUTO_CREATE)
+        } else {
+            activity?.startService(intent)
+            activity?.bindService(intent, connection, BIND_AUTO_CREATE)
+        }
+
+        if (!presenter.isMusicTurnOn()) {
+            musicService?.pauseMusic()
+        }
+
         musicSwitch.setOnCheckedChangeListener { _, b ->
             presenter.changeStateMusicPlayer(b)
             if (b) {
-                val intent = Intent(context, MusicService::class.java)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    activity?.startForegroundService(intent)
-                } else {
-                    activity?.startService(intent)
-                }
+                musicService?.playMusic()
             } else {
-                val intent = Intent(context, MusicService::class.java)
-                activity?.stopService(intent)
+                musicService?.pauseMusic()
             }
         }
     }

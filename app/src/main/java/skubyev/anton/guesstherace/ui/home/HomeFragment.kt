@@ -60,8 +60,6 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
         raceImageView.getBuilder<SwipePlaceHolderView, SwipeViewBuilder<SwipePlaceHolderView>>()
                 .setDisplayViewCount(1)
-                .setHeightSwipeDistFactor(0.5f)
-                .setWidthSwipeDistFactor(0.5f)
                 .setSwipeDecor(SwipeDecor()
                         .setSwipeAnimFactor(100f)
                         .setSwipeAnimTime(100)
