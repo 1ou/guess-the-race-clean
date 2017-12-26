@@ -41,7 +41,7 @@ abstract class BaseFragment : MvpAppCompatFragment() {
         }
     }
 
-    protected fun showToastkMessage(message: String) {
+    protected fun showToastMessage(message: String) {
         view?.let {
             Toast.makeText(it.context, message, Toast.LENGTH_LONG).show()
         }

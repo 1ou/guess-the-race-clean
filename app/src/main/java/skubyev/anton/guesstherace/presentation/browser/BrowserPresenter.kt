@@ -21,6 +21,5 @@ class BrowserPresenter @Inject constructor(
         viewState.showPage(link)
     }
 
-
     fun onBackPressed() = router.exit()
 }

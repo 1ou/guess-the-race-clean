@@ -1,11 +1,14 @@
 package skubyev.anton.guesstherace;
 
 import android.content.ContextWrapper;
+import android.content.Intent;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import skubyev.anton.guesstherace.music.MusicService;
 import skubyev.anton.guesstherace.toothpick.DI;
 import skubyev.anton.guesstherace.toothpick.module.AppModule;
 import skubyev.anton.guesstherace.toothpick.module.DatabaseModule;

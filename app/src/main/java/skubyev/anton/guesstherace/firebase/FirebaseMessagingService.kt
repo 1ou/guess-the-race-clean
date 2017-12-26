@@ -17,7 +17,6 @@ import skubyev.anton.guesstherace.ui.launch.MainActivity
 import toothpick.Toothpick
 import javax.inject.Inject
 
-
 class FirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagingService() {
     @Inject lateinit var notificationRepository: NotificationsRepository
 

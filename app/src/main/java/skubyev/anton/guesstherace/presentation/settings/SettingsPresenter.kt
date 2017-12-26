@@ -29,6 +29,10 @@ class SettingsPresenter @Inject constructor(
             .doOnError { viewState.showMessage(resourceManager.getString(R.string.remove_error)) }
             .subscribeIgnoreResult()
 
+    fun changeStateMusicPlayer(state: Boolean) = settingsInteractor.setPlayMusic(state)
+
+    fun isMusicTurnOn() = settingsInteractor.isPlayMusic()
+
     fun clickedPrivacy() = router.navigateTo(Screens.BROWSER_SCREEN, "http://wooa.ru/android/determinace/backend/privacy_policy.html")
 
     fun onBackPressed() = router.exit()

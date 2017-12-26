@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name=".music.MusicService" />
+
         <service android:name=".firebase.FirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

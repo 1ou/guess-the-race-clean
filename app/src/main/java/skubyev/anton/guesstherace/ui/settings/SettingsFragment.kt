@@ -3,11 +3,14 @@ package skubyev.anton.guesstherace.ui.settings
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startForegroundService
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_settings.*
 import skubyev.anton.guesstherace.R
+import skubyev.anton.guesstherace.music.MusicService
 import skubyev.anton.guesstherace.presentation.settings.SettingsPresenter
 import skubyev.anton.guesstherace.presentation.settings.SettingsView
 import skubyev.anton.guesstherace.toothpick.DI
@@ -69,6 +72,23 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
         }
 
         version_sub.text = context?.packageManager?.getPackageInfo(context?.packageName, 0)?.versionName
+
+        musicSwitch.isChecked = presenter.isMusicTurnOn()
+
+        musicSwitch.setOnCheckedChangeListener { _, b ->
+            presenter.changeStateMusicPlayer(b)
+            if (b) {
+                val intent = Intent(context, MusicService::class.java)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    activity?.startForegroundService(intent)
+                } else {
+                    activity?.startService(intent)
+                }
+            } else {
+                val intent = Intent(context, MusicService::class.java)
+                activity?.stopService(intent)
+            }
+        }
     }
 
     override fun showMessage(message: String) {

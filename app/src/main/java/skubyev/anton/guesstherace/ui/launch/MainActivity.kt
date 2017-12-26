@@ -1,6 +1,7 @@
 package skubyev.anton.guesstherace.ui.launch
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -18,6 +19,7 @@ import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.Screens
+import skubyev.anton.guesstherace.music.MusicService
 import skubyev.anton.guesstherace.presentation.drawer.NavigationDrawerView
 import skubyev.anton.guesstherace.presentation.global.GlobalMenuController
 import skubyev.anton.guesstherace.presentation.launch.LaunchPresenter
@@ -39,7 +41,9 @@ import skubyev.anton.guesstherace.ui.settings.SettingsFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
+
 class MainActivity : BaseActivity(), LaunchView {
+
     @Inject lateinit var navigationHolder: NavigatorHolder
     @Inject lateinit var menuController: GlobalMenuController
 
@@ -90,11 +94,15 @@ class MainActivity : BaseActivity(), LaunchView {
 
     private fun initFirebaseAnalytics() {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val bundle = Bundle()
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "screen")
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "home")
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+    }
+
+    override fun startMusic() {
+        val intent = Intent(this, MusicService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent)
+        } else {
+            startService(intent)
+        }
     }
 
     private val navigator = object : SupportAppNavigator(this, R.id.mainContainer) {

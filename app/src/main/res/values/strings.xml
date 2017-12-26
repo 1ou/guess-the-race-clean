@@ -24,6 +24,8 @@
     <string name="add_comment">Add comment</string>
     <string name="success_add_comment">Comment successful added.</string>
     <string name="fail_add_comment">Error. Comment was not added.</string>
+    <string name="fail_length_comment">Error. Comment have to be more than 10 symbols.</string>
+
 
     <!--Rating screen-->
     <string name="rating_title">Rating</string>
@@ -39,6 +41,7 @@
     <string name="rang_3">Donald John Trump</string>
     <string name="rang_4">Member of Ku Klux Klan</string>
     <string name="rang_5">Adolf Hitler</string>
+    <string name="rating_not_found">Rating was not found. You can be first!</string>
 
     <!--Notifications screen-->
     <string name="notifications_title">Notifications</string>
@@ -54,6 +57,7 @@
     <string name="clear_watched_images_subtext">Removes all previously saved Watched Images</string>
     <string name="privacy">Privacy</string>
     <string name="version">Version</string>
+    <string name="music">Music</string>
     <string name="remove_from_watched_images">Would you like to remove all images from Watched Images?</string>
     <string name="remove">Remove</string>
     <string name="remove_success">Watched Images removed!</string>

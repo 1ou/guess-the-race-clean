@@ -5,17 +5,21 @@ import com.arellomobile.mvp.MvpPresenter
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
+import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
 import javax.inject.Inject
 
 @InjectViewState
 class LaunchPresenter @Inject constructor(
         private val router: Router,
-        private val authInteractor: AuthInteractor
+        private val authInteractor: AuthInteractor,
+        private val settingsInteractor: SettingsInteractor
 ) : MvpPresenter<LaunchView>() {
 
     override fun onFirstViewAttach() {
         if (authInteractor.isSignedIn()) router.newRootScreen(Screens.MAIN_SCREEN)
         else router.newRootScreen(Screens.AUTH_SCREEN)
+
+        if (settingsInteractor.isPlayMusic()) viewState.startMusic()
     }
 
     fun onBackPressed() = router.finishChain()

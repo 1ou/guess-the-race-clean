@@ -13,4 +13,8 @@ class SettingsInteractor @Inject constructor(
     fun isShowTraining() = settingsRepository.isShowTraining()
 
     fun setIsShowTraining(isShowTraining: Boolean) = settingsRepository.setShowTraining(isShowTraining)
+
+    fun isPlayMusic() = settingsRepository.isPlayMusic()
+
+    fun  setPlayMusic(isPlayMusic: Boolean) = settingsRepository.setPlayMusic(isPlayMusic)
 }

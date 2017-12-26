@@ -7,7 +7,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import kotlinx.android.synthetic.main.fragment_comments.*
-import kotlinx.android.synthetic.main.layout_list_with_update.*
 import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.entity.CommentResponse
 import skubyev.anton.guesstherace.extension.visible
@@ -98,7 +97,11 @@ class CommentsFragment : BaseFragment(), CommentsView, EditDialog.OnClickListene
     override val dialogEdit: (tag: String, msg: String) -> Unit = { tag, msg ->
         when (tag) {
             ADD_COMMENT_TAG -> {
-                presenter.addComment(msg)
+                if (msg.length > 10) {
+                    presenter.addComment(msg)
+                } else {
+                    showSnackMessage(getString(R.string.fail_length_comment))
+                }
             }
             else -> showMessage(getString(R.string.error_choose))
         }
