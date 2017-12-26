@@ -64,6 +64,10 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
             startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"))
         }
 
+        privacy.setOnClickListener {
+            presenter.clickedPrivacy()
+        }
+
         version_sub.text = context?.packageManager?.getPackageInfo(context?.packageName, 0)?.versionName
     }
 

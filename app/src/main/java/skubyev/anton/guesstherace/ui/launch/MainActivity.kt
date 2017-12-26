@@ -26,6 +26,7 @@ import skubyev.anton.guesstherace.toothpick.DI
 import skubyev.anton.guesstherace.toothpick.module.MainActivityModule
 import skubyev.anton.guesstherace.ui.about.AboutFragment
 import skubyev.anton.guesstherace.ui.auth.AuthActivity
+import skubyev.anton.guesstherace.ui.browser.BrowserFragment
 import skubyev.anton.guesstherace.ui.comments.CommentsFragment
 import skubyev.anton.guesstherace.ui.drawer.NavigationDrawerFragment
 import skubyev.anton.guesstherace.ui.feedback.FeedbackFragment
@@ -116,6 +117,7 @@ class MainActivity : BaseActivity(), LaunchView {
             Screens.RATING_SCREEN -> RatingFragment()
             Screens.NOTIFICATIONS_SCREEN -> NotificationsFragment()
             Screens.ABOUT_SCREEN -> AboutFragment()
+            Screens.BROWSER_SCREEN -> BrowserFragment.createNewInstance(data as String)
             else -> null
         }
 
@@ -170,6 +172,7 @@ class MainActivity : BaseActivity(), LaunchView {
         is SettingsFragment -> false
         is FeedbackFragment -> false
         is AboutFragment -> false
+        is BrowserFragment -> false
         else -> false
     }
     //end region

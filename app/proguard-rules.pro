@@ -59,3 +59,6 @@
   -keepclassmembers class ** {
     @com.mindorks.placeholderview.annotations.** <methods>;
   }
+
+#Carousel
+-keep class com.synnapps.carouselview.** { *; }

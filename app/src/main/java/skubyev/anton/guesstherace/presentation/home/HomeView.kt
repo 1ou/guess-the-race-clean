@@ -12,6 +12,7 @@ interface HomeView : MvpView {
     fun showImage(image: Image)
     fun showProgress(show: Boolean)
     fun showNotifications(count: Int)
+    fun showTraining()
 
     @StateStrategyType(SkipStrategy::class)
     fun showImagesOverInfo()

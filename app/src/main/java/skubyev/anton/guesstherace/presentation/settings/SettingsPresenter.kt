@@ -5,6 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.R
+import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
 import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
 import skubyev.anton.guesstherace.model.system.ResourceManager
@@ -27,6 +28,8 @@ class SettingsPresenter @Inject constructor(
             .doOnComplete { viewState.showMessage(resourceManager.getString(R.string.remove_success)) }
             .doOnError { viewState.showMessage(resourceManager.getString(R.string.remove_error)) }
             .subscribeIgnoreResult()
+
+    fun clickedPrivacy() = router.navigateTo(Screens.BROWSER_SCREEN, "http://wooa.ru/android/determinace/backend/privacy_policy.html")
 
     fun onBackPressed() = router.exit()
 }

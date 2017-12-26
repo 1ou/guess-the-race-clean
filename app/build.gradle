@@ -150,6 +150,9 @@ dependencies {
 
     //Placeholder
     compile 'com.mindorks:placeholderview:0.7.0'
+
+    //Carousel
+    compile 'com.synnapps:carouselview:0.1.4'
 }
 
 configurations.all {

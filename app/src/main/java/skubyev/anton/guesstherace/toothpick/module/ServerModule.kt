@@ -17,6 +17,7 @@ import skubyev.anton.guesstherace.model.repository.images.ImagesRepository
 import skubyev.anton.guesstherace.model.repository.notifications.NotificationsRepository
 import skubyev.anton.guesstherace.model.repository.profile.ProfileRepository
 import skubyev.anton.guesstherace.model.repository.rating.RatingRepository
+import skubyev.anton.guesstherace.model.repository.settings.SettingsRepository
 import skubyev.anton.guesstherace.model.repository.watchedimages.WatchedImagesRepository
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
 import skubyev.anton.guesstherace.toothpick.provider.ApiProvider
@@ -58,6 +59,7 @@ class ServerModule(serverUrl: String) : Module() {
         bind(ProfileInteractor::class.java)
 
         //Settings
+        bind(SettingsRepository::class.java)
         bind(SettingsInteractor::class.java)
 
         //Notifications

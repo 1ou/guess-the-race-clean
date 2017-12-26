@@ -59,6 +59,10 @@
     <string name="remove_success">Watched Images removed!</string>
     <string name="remove_error">Watched Images was not removed!</string>
 
+    <!--Privacy screen-->
+    <string name="privacy_title">Privacy</string>
+
+
     <!--Feedback screen-->
     <string name="feedback_title">Feedback</string>
     <string name="feedback_message">Do you have questions or suggestions, or would you like to notify us of a technical problem? Then send us your feedback!\n\nIf you like our app, please rate it in the store: Google Play!</string>

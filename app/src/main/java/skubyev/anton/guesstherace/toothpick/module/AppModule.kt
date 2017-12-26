@@ -5,8 +5,10 @@ import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.BuildConfig
-import skubyev.anton.guesstherace.model.data.auth.AuthHolder
-import skubyev.anton.guesstherace.model.data.storage.Prefs
+import skubyev.anton.guesstherace.model.data.interfaces.AuthHolder
+import skubyev.anton.guesstherace.model.data.interfaces.SettingsHolder
+import skubyev.anton.guesstherace.model.data.storage.AuthPrefs
+import skubyev.anton.guesstherace.model.data.storage.SettingsPrefs
 import skubyev.anton.guesstherace.model.system.AppSchedulers
 import skubyev.anton.guesstherace.model.system.ResourceManager
 import skubyev.anton.guesstherace.model.system.SchedulersProvider
@@ -30,6 +32,9 @@ class AppModule(context: Context) : Module() {
         bind(NavigatorHolder::class.java).toInstance(cicerone.navigatorHolder)
 
         //Auth
-        bind(AuthHolder::class.java).to(Prefs::class.java).singletonInScope()
+        bind(AuthHolder::class.java).to(AuthPrefs::class.java).singletonInScope()
+
+        //Settings
+        bind(SettingsHolder::class.java).to(SettingsPrefs::class.java).singletonInScope()
     }
 }

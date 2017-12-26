@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
+import android.support.v4.view.ViewPager
 import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -26,12 +27,12 @@ import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.presentation.home.HomePresenter
 import skubyev.anton.guesstherace.presentation.home.HomeView
 import skubyev.anton.guesstherace.toothpick.DI
-import skubyev.anton.guesstherace.ui.comments.CommentsFragment
 import skubyev.anton.guesstherace.ui.global.BaseFragment
 import skubyev.anton.guesstherace.ui.global.ConfirmDialog
-import skubyev.anton.guesstherace.ui.global.InfoDialog
 import timber.log.Timber
 import toothpick.Toothpick
+import skubyev.anton.guesstherace.extension.visible
+
 
 class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
@@ -59,9 +60,11 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
         raceImageView.getBuilder<SwipePlaceHolderView, SwipeViewBuilder<SwipePlaceHolderView>>()
                 .setDisplayViewCount(1)
+                .setHeightSwipeDistFactor(0.5f)
+                .setWidthSwipeDistFactor(0.5f)
                 .setSwipeDecor(SwipeDecor()
                         .setSwipeAnimFactor(100f)
-                        .setSwipeAnimTime(150)
+                        .setSwipeAnimTime(100)
                         .setSwipeInMsgLayoutId(R.layout.swipe_white_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.swipe_black_msg_view))
 
@@ -127,6 +130,36 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
                 presenter.clickedSettings()
             }
             else -> showMessage(getString(R.string.error_choose))
+        }
+    }
+
+    override fun showTraining() {
+        carouselView.visible(true)
+        raceImageView.visible(false)
+
+        val sampleImages = intArrayOf(R.drawable.badge_background, R.drawable.abc_item_background_holo_dark)
+
+        carouselView.pageCount = sampleImages.size
+        carouselView.setPageTransformInterval(1000)
+        carouselView.pauseCarousel()
+
+        carouselView.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (position == 1) {
+                    raceImageView.visible(true)
+                    carouselView.visible(false)
+                }
+            }
+        })
+
+        carouselView.setImageListener { position, imageView ->
+            imageView.setImageResource(sampleImages[position])
         }
     }
 

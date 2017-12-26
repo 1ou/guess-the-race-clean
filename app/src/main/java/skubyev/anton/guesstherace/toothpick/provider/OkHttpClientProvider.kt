@@ -3,7 +3,7 @@ package skubyev.anton.guesstherace.toothpick.provider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import skubyev.anton.guesstherace.BuildConfig
-import skubyev.anton.guesstherace.model.data.auth.AuthHolder
+import skubyev.anton.guesstherace.model.data.interfaces.AuthHolder
 import skubyev.anton.guesstherace.model.data.server.interceptor.AuthHeaderInterceptor
 import skubyev.anton.guesstherace.model.data.server.interceptor.CurlLoggingInterceptor
 import skubyev.anton.guesstherace.model.data.server.interceptor.ErrorResponseInterceptor

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="425dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="end"
     android:orientation="vertical">
 
@@ -9,13 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
+        android:background="@drawable/rounded_frame_black"
+        android:rotation="-15"
         android:shadowColor="@android:color/black"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="7"
         android:text="@string/black"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textColor="#ccff00"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
 </LinearLayout>

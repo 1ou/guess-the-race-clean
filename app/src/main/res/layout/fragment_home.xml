@@ -73,6 +73,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fillColor="#FFFFFFFF"
+            app:pageColor="#00000000"
+            app:radius="6dp"
+            app:slideInterval="3000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"
+            android:visibility="gone"/>
+
         <ImageView
             android:id="@+id/answerImageView"
             android:layout_width="match_parent"

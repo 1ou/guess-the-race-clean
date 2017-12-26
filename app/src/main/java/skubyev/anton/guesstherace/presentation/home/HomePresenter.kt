@@ -13,6 +13,7 @@ import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.interactor.image.ImageInteractor
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
+import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
 import skubyev.anton.guesstherace.presentation.global.GlobalMenuController
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class HomePresenter @Inject constructor(
         private val imageInteractor: ImageInteractor,
         private val notificationsInteractor: NotificationsInteractor,
         private val profileInteractor: ProfileInteractor,
+        private val settingsInteractor: SettingsInteractor,
         private val errorHandler: ErrorHandler
 ) : MvpPresenter<HomeView>() {
 
@@ -31,7 +33,14 @@ class HomePresenter @Inject constructor(
 
     private lateinit var currentImage: Image
 
-    override fun onFirstViewAttach() = loadImage()
+    override fun onFirstViewAttach() {
+        loadImage()
+
+        if (!settingsInteractor.isShowTraining()) {
+            viewState.showTraining()
+            settingsInteractor.setIsShowTraining(true)
+        }
+    }
 
     fun loadNotifications() = notificationsInteractor.getNotifications()
             .map { it.filter { it.show } }

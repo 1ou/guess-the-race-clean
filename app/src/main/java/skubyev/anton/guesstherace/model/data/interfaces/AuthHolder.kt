@@ -1,4 +1,4 @@
-package skubyev.anton.guesstherace.model.data.auth
+package skubyev.anton.guesstherace.model.data.interfaces
 
 interface AuthHolder {
     var token: String

@@ -1,10 +1,10 @@
 package skubyev.anton.guesstherace.model.data.storage
 
 import android.content.Context
-import skubyev.anton.guesstherace.model.data.auth.AuthHolder
+import skubyev.anton.guesstherace.model.data.interfaces.AuthHolder
 import javax.inject.Inject
 
-class Prefs @Inject constructor(
+class AuthPrefs @Inject constructor(
         private val context: Context
 ) : AuthHolder {
     private val AUTH_DATA = "auth_data"
