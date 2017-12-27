@@ -6,7 +6,7 @@
     <string name="name">Name</string>
     <string name="greeting">Welcome to the application Guess The Race. Enter your name and press OK.</string>
     <string name="error_login">That name has already used.</string>
-    <string name="error_login_length">Name should consist more than 2 symbols.</string>
+    <string name="error_login_length">Name should consist more than 5 symbols.</string>
     <string name="you_not_auth">You did not authorized</string>
 
     <!--Home screen-->

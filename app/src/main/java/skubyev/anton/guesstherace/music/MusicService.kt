@@ -19,7 +19,7 @@ class MusicService : Service() {
         }
         mediaPlayer?.isLooping = true
         playMusic()
-        return START_STICKY
+        return START_NOT_STICKY
     }
 
     inner class MusicBinder : Binder() {

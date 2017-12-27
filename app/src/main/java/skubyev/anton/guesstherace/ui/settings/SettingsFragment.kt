@@ -37,6 +37,9 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
         override fun onServiceConnected(name: ComponentName, binder: IBinder) {
             val binder = binder as MusicService.MusicBinder
             musicService = binder.service
+            if (!presenter.isMusicTurnOn()) {
+                musicService?.pauseMusic()
+            }
         }
         override fun onServiceDisconnected(name: ComponentName) {}
     }
@@ -95,10 +98,6 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
         } else {
             activity?.startService(intent)
             activity?.bindService(intent, connection, BIND_AUTO_CREATE)
-        }
-
-        if (!presenter.isMusicTurnOn()) {
-            musicService?.pauseMusic()
         }
 
         musicSwitch.setOnCheckedChangeListener { _, b ->

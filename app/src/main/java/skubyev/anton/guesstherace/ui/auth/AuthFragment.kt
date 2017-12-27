@@ -20,7 +20,7 @@ class AuthFragment : BaseFragment(), AuthView {
 
     override val layoutRes = R.layout.fragment_auth
 
-    private val minLogin = 3
+    private val minLogin = 5
 
     @InjectPresenter lateinit var presenter: AuthPresenter
 

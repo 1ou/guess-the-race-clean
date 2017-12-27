@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v4.view.ViewPager
@@ -194,6 +195,8 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
         answerImageView.visibility = View.VISIBLE
 
         if (state) {
+            val mediaPlayer = MediaPlayer.create(context, R.raw.victory)
+            mediaPlayer.start()
             showMessage(resources.getString(R.string.you_guessed))
             showKonfetti()
             presenter.appendRating(true)
