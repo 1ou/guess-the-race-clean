@@ -6,6 +6,14 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.2'
+    signingConfigs {
+        release {
+            storeFile file('guesstherace.jks')
+            storePassword "bernard94"
+            keyAlias "guesstherace"
+            keyPassword "bernard75-94"
+        }
+    }
     defaultConfig {
         applicationId "skubyev.anton.guesstherace"
         minSdkVersion 19
@@ -13,12 +21,9 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-
         buildConfigField "String", "ORIGIN_API_ENDPOINT", '"http://wooa.ru/android/determinace/backend/"'
         buildConfigField "String", "ORIGIN_IMAGES_ENDPOINT", '"http://wooa.ru/android/determinace/photo/"'
-
         vectorDrawables.useSupportLibrary true
-
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [toothpick_registry_package_name: 'skubyev.anton.guesstherace']
@@ -29,6 +34,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -55,7 +61,8 @@ ext {
     toothpickVersion = "1.0.6"
     retrofitVersion = "2.3.0"
     requery = "1.4.0"
-    firebase = "11.6.2"
+    firebase = "11.8.0"
+    permissons = "3.1.0"
 }
 
 dependencies {
@@ -104,7 +111,7 @@ dependencies {
     compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 
     //Image load and cache
-    compile "com.squareup.picasso:picasso:2.5.2"
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
     //Custom fonts
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
@@ -139,6 +146,7 @@ dependencies {
     compile 'com.pixplicity.easyprefs:library:1.9.0@aar'
 
     //GA && Dependency for Google Sign-In
+    compile "com.google.android.gms:play-services-ads:$firebase"
     compile "com.google.android.gms:play-services-analytics:$firebase"
     compile "com.google.firebase:firebase-ads:$firebase"
     compile "com.google.firebase:firebase-messaging:$firebase"
@@ -153,6 +161,13 @@ dependencies {
 
     //Carousel
     compile 'com.synnapps:carouselview:0.1.4'
+
+    //Permissions
+    compile("com.github.hotchemi:permissionsdispatcher:$permissons") {
+        // if you don't use android.app.Fragment you can exclude support for them
+        exclude module: "support-v13"
+    }
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$permissons"
 }
 
 configurations.all {

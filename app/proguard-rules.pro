@@ -62,3 +62,6 @@
 
 #Carousel
 -keep class com.synnapps.carouselview.** { *; }
+
+#Picasso
+-dontwarn com.squareup.okhttp.**

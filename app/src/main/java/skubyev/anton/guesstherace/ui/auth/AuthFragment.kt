@@ -39,7 +39,7 @@ class AuthFragment : BaseFragment(), AuthView {
             if (login.length > minLogin) {
                 presenter.testLogin(login)
             } else {
-                showSnackMessage(getString(R.string.error_login_length))
+                showErrorDialog(getString(R.string.error_login_length))
             }
         }
 
@@ -50,10 +50,10 @@ class AuthFragment : BaseFragment(), AuthView {
         }
     }
 
-    override fun showErrorDialog() {
+    override fun showErrorDialog(msg: String) {
         InfoDialog
                 .newInstants(
-                        msg = getString(R.string.error_login),
+                        msg = msg,
                         title = getString(R.string.error)
                 )
                 .show(childFragmentManager, INFO_TAG)

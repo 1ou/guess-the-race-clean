@@ -8,7 +8,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface AuthView : MvpView {
     fun showProgress(isVisible: Boolean)
-    fun showErrorDialog()
+    fun showErrorDialog(msg: String)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showMessage(message: String)

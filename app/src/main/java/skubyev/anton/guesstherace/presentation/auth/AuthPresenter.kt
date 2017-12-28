@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
+import skubyev.anton.guesstherace.R
 import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.extension.addTo
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
@@ -16,7 +17,8 @@ import javax.inject.Inject
 class AuthPresenter @Inject constructor(
         private val router: Router,
         private val authInteractor: AuthInteractor,
-        private val errorHandler: ErrorHandler
+        private val errorHandler: ErrorHandler,
+        private val resourceManager: ResourceManager
 ) : MvpPresenter<AuthView>() {
 
     private var compositeDisposable = CompositeDisposable()
@@ -38,7 +40,7 @@ class AuthPresenter @Inject constructor(
             .testLogin(login)
             .doOnSuccess {
                 if (it.success) registration(login)
-                else viewState.showErrorDialog()
+                else viewState.showErrorDialog(resourceManager.getString(R.string.error_login))
             }
             .subscribe(
                     { },

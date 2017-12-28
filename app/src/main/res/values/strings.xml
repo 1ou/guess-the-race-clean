@@ -17,6 +17,7 @@
     <string name="you_not_guessed">You did not guess</string>
     <string name="images_over_title">Images are over</string>
     <string name="images_over_text">All images are over. If you want to play again press OK and clear watched images.</string>
+    <string name="thanks_for_rating">Thank you for rating!</string>
 
     <!--Comments screen-->
     <string name="comments_title">Comments</string>

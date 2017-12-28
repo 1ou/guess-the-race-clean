@@ -12,14 +12,13 @@ interface HomeView : MvpView {
     fun showImage(image: Image)
     fun showProgress(show: Boolean)
     fun showNotifications(count: Int)
-    fun showTraining()
     fun showRateDialog()
+    fun showAnswer(url: String, state: Boolean)
 
     @StateStrategyType(SkipStrategy::class)
     fun showImagesOverInfo()
-
     @StateStrategyType(SkipStrategy::class)
-    fun showAnswer(url: String, state: Boolean)
+    fun showTraining()
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showMessage(message: String)

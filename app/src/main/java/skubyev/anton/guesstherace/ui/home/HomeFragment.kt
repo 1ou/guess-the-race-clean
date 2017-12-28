@@ -164,6 +164,11 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
         val sampleImages = intArrayOf(R.drawable.badge_background, R.drawable.abc_item_background_holo_dark)
 
         carouselView.pageCount = sampleImages.size
+
+        carouselView.setImageListener { position, imageView ->
+            imageView.setImageResource(sampleImages[position])
+        }
+
         carouselView.setPageTransformInterval(1000)
         carouselView.pauseCarousel()
 
@@ -181,10 +186,6 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
                 }
             }
         })
-
-        carouselView.setImageListener { position, imageView ->
-            imageView.setImageResource(sampleImages[position])
-        }
     }
 
     override fun showNotifications(count: Int) {
