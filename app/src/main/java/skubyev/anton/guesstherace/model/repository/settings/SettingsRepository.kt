@@ -17,4 +17,10 @@ class SettingsRepository @Inject constructor(
     fun setPlayMusic(isPlayMusic: Boolean) {
         settingsData.isPlayMusic = isPlayMusic
     }
+
+    fun isShowRate() = settingsData.isShowRate
+
+    fun setShowRate(isShowRate: Boolean) {
+        settingsData.isShowRate = isShowRate
+    }
 }

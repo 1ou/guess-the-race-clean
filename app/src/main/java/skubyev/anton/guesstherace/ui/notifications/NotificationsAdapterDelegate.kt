@@ -35,7 +35,7 @@ class NotificationsAdapterDelegate(private val initListener: (Notification) -> U
             notification.show = false
             clickListener.invoke(notification)
 
-            view.authorTV.text = "<b>" + notification.title + "</b>"
+            view.authorTV.text = notification.title
             view.commentTV.text = notification.message
         }
     }

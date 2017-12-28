@@ -5,4 +5,5 @@ object DI {
     const val DATA_SCOPE = "data scope"
     const val MAIN_ACTIVITY_SCOPE = "main activity scope"
     const val FIREBASE_SCOPE = "firebase scope"
+    const val MUSIC_SCOPE = "music scope"
 }

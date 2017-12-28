@@ -66,7 +66,6 @@
     <!--Privacy screen-->
     <string name="privacy_title">Privacy</string>
 
-
     <!--Feedback screen-->
     <string name="feedback_title">Feedback</string>
     <string name="feedback_message">Do you have questions or suggestions, or would you like to notify us of a technical problem? Then send us your feedback!\n\nIf you like our app, please rate it in the store: Google Play!</string>
@@ -80,6 +79,10 @@
     <!--About screen-->
     <string name="about_title">About</string>
     <string name="about_message">This application was created for my diploma. I have to collect statistics about people. How they can identify race of people only on background. There is no racism here. If you have some pretension you can text me. But i hope that you spend good time in the application. And it\'ll be really great if you\'ll rate this app and tell to you friends about it.</string>
+
+    <!--Rate dialog-->
+    <string name="rate_title">Rate App</string>
+    <string name="rate_text">If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. \n Thanks for your support!</string>
 
     <!--Error messages-->
     <string name="check_internet_error">Nothing was found. Check the internet connection.</string>

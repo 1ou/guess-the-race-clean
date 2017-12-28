@@ -7,11 +7,22 @@ import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
 import skubyev.anton.guesstherace.R
+import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
+import skubyev.anton.guesstherace.toothpick.DI
+import toothpick.Toothpick
+import javax.inject.Inject
 
 @SuppressLint("Registered")
 class MusicService : Service() {
     private var mediaPlayer: MediaPlayer? = null
     private val binder = MusicBinder()
+    @Inject lateinit var settingsInteractor: SettingsInteractor
+
+    init {
+        Toothpick.openScopes(DI.DATA_SCOPE, DI.MUSIC_SCOPE).apply {
+            Toothpick.inject(this@MusicService, this)
+        }
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (mediaPlayer == null) {
@@ -44,7 +55,9 @@ class MusicService : Service() {
     }
 
     fun playMusic() {
-        mediaPlayer?.start()
+        if (settingsInteractor.isPlayMusic()) {
+            mediaPlayer?.start()
+        }
     }
 
     fun pauseMusic() {

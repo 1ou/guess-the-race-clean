@@ -36,9 +36,9 @@ class HomePresenter @Inject constructor(
     override fun onFirstViewAttach() {
         loadImage()
 
-        if (!settingsInteractor.isShowTraining()) {
+        if (settingsInteractor.isShowTraining()) {
             viewState.showTraining()
-            settingsInteractor.setIsShowTraining(true)
+            settingsInteractor.setShowTraining(false)
         }
     }
 
@@ -57,6 +57,8 @@ class HomePresenter @Inject constructor(
                     currentImage = it
                     viewState.showImage(it)
                 }
+
+                showRateDialog()
             }
             .doOnError { viewState.showImagesOverInfo() }
             .doOnSubscribe { viewState.showProgress(true) }
@@ -91,6 +93,14 @@ class HomePresenter @Inject constructor(
             .addTo(compositeDisposable)
 
     fun isShowAdv() = (0..100).random() > 92
+
+    private fun showRateDialog() {
+        if ((0..100).random() > 95 && settingsInteractor.isShowRate()) {
+            viewState.showRateDialog()
+        }
+    }
+
+    fun changeStateShowRate(state: Boolean) = settingsInteractor.setShowRate(state)
 
     fun clickedDiscuss() = router.navigateTo(Screens.COMMENTS_SCREEN, currentImage.idImage)
 

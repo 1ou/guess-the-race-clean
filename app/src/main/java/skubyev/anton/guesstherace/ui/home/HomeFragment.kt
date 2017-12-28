@@ -1,12 +1,10 @@
 package skubyev.anton.guesstherace.ui.home
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.res.Configuration
 import android.graphics.Color
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v4.view.ViewPager
@@ -33,9 +31,10 @@ import skubyev.anton.guesstherace.ui.global.ConfirmDialog
 import timber.log.Timber
 import toothpick.Toothpick
 import skubyev.anton.guesstherace.extension.visible
+import skubyev.anton.guesstherace.ui.global.RateDialog
 
 
-class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
+class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, RateDialog.OnClickListener {
 
     override val layoutRes = R.layout.fragment_home
 
@@ -45,6 +44,7 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
 
     companion object {
         private const val IMAGE_OVER_TAG = "image_over_tag"
+        private const val RATE_TAG = "rate_tag"
     }
 
     @ProvidePresenter
@@ -130,6 +130,31 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener {
             }
             else -> showMessage(getString(R.string.error_choose))
         }
+    }
+
+    override val dialogRate: (tag: String) -> Unit = { tag ->
+        when (tag) {
+            RATE_TAG -> {
+                presenter.changeStateShowRate(false)
+                launchMarket()
+            }
+        }
+    }
+
+    override fun showRateDialog() {
+        RateDialog.newInstants(
+                getString(R.string.rate_title),
+                getString(R.string.rate_text),
+                RATE_TAG
+        ).show(childFragmentManager, RATE_TAG)
+    }
+
+    private fun launchMarket() {
+        val uri = Uri.parse("market://details?id=" + context?.packageName)
+        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(goToMarket)
+        } catch (e: ActivityNotFoundException) { }
     }
 
     override fun showTraining() {
