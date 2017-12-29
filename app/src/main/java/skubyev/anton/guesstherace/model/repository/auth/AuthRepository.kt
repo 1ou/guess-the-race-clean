@@ -34,8 +34,6 @@ class AuthRepository @Inject constructor(
         authData.userName = userName
     }
 
-    fun token() = authData.token
-
     fun idUser() = authData.idUser
 
     fun userName() = authData.userName

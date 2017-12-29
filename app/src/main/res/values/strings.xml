@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">aGuess the race</string>
+    <string name="app_name">Guess The Race</string>
 
     <!--Auth screen-->
     <string name="auth_title">Registration</string>
@@ -7,17 +7,19 @@
     <string name="greeting">Welcome to the application Guess The Race. Enter your name and press OK.</string>
     <string name="error_login">That name has already used.</string>
     <string name="error_login_length">Name should consist more than 5 symbols.</string>
-    <string name="you_not_auth">You did not authorized</string>
+    <string name="you_not_auth">You did not authorized.</string>
 
     <!--Home screen-->
-    <string name="home_title">Guess the race</string>
+    <string name="home_title">Guess The Race</string>
     <string name="black">Black</string>
     <string name="white">White</string>
-    <string name="you_guessed">You guessed</string>
+    <string name="you_guessed">You guessed!</string>
     <string name="you_not_guessed">You did not guess</string>
     <string name="images_over_title">Images are over</string>
     <string name="images_over_text">All images are over. If you want to play again press OK and clear watched images.</string>
     <string name="thanks_for_rating">Thank you for rating!</string>
+    <string name="swipe_help">Swipe image to the right or left!</string>
+
 
     <!--Comments screen-->
     <string name="comments_title">Comments</string>
@@ -26,7 +28,6 @@
     <string name="success_add_comment">Comment successful added.</string>
     <string name="fail_add_comment">Error. Comment was not added.</string>
     <string name="fail_length_comment">Error. Comment have to be more than 10 symbols.</string>
-
 
     <!--Rating screen-->
     <string name="rating_title">Rating</string>
@@ -79,7 +80,7 @@
 
     <!--About screen-->
     <string name="about_title">About</string>
-    <string name="about_message">This application was created for my diploma. I have to collect statistics about people. How they can identify race of people only on background. There is no racism here. If you have some pretension you can text me. But i hope that you spend good time in the application. And it\'ll be really great if you\'ll rate this app and tell to you friends about it.</string>
+    <string name="about_message">This application was created for my diploma. I have to collect statistics about people. How they can identify race of people only with help background and clothes. There is no racism here. If you have some pretension you can text me. But i hope that you spend good time in the application. And it\'ll be really great if you\'ll rate this app and tell to you friends about it.</string>
 
     <!--Rate dialog-->
     <string name="rate_title">Rate App</string>
@@ -109,7 +110,6 @@
 
     <!--Navigation drawer-->
     <string name="hello_text">Hello, </string>
-    <string name="header">Great Deal Compare</string>
     <string name="home_item">Home</string>
     <string name="rating_item">Rating</string>
     <string name="settings_item">Settings</string>

@@ -21,4 +21,6 @@ class SettingsInteractor @Inject constructor(
     fun isShowRate() = settingsRepository.isShowRate()
 
     fun setShowRate(isShowRate: Boolean) = settingsRepository.setShowRate(isShowRate)
+
+    fun clear() = settingsRepository.clear()
 }

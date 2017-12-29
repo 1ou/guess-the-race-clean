@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name">Угадай Расу</string>
+
+    <!--Auth screen-->
+    <string name="auth_title">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="greeting">Добро пожаловать в приложение Угадай Расу. Введите имя и нажмите кнопку ОК.</string>
+    <string name="error_login">Это имя уже используется.</string>
+    <string name="error_login_length">Имя должно содержать больше 5 символов.</string>
+    <string name="you_not_auth">Вы не авторизованы.</string>
+
+    <!--Home screen-->
+    <string name="home_title">Угадай Расу</string>
+    <string name="black">Черный</string>
+    <string name="white">Белый</string>
+    <string name="you_guessed">Вы угадали!</string>
+    <string name="you_not_guessed">Вы не угадали</string>
+    <string name="images_over_title">Изображения закончились</string>
+    <string name="images_over_text">Все изображения закончились. Если Вы хотите сыграть еще раз - нажмите OK и очистите просмотренные изображения.</string>
+    <string name="thanks_for_rating">Спасибо за оценку!</string>
+    <string name="swipe_help">Сдвиньте изображение вправо или влево!</string>
+
+    <!--Comments screen-->
+    <string name="comments_title">Комментарии</string>
+    <string name="comments_not_found">Комментарии не найдены, Вы можете быть первым(ой)!</string>
+    <string name="add_comment">Добавить комментарий</string>
+    <string name="success_add_comment">Комментарий успешно добавлен!</string>
+    <string name="fail_add_comment">Ошибка. Комментарий не был добавлен.</string>
+    <string name="fail_length_comment">Ошибка. Комментарий должен быть длиннее 10 символов.</string>
+
+
+    <!--Rating screen-->
+    <string name="rating_title">Рейтинг</string>
+    <string name="racist">Расист</string>
+    <string name="anti_racist">Анти-расист</string>
+    <string name="top_users"><b>Лучшие пользователи</b></string>
+    <string name="place_rating">Место</string>
+    <string name="name_rating">Имя</string>
+    <string name="rating_rating">Рейтинг</string>
+    <string name="rank">Ранг:</string>
+    <string name="rang_1">Мартин Лютер Кинг</string>
+    <string name="rang_2">Нельсон Ролилахла Мандела</string>
+    <string name="rang_3">Дональд Трамп</string>
+    <string name="rang_4">Член Ку-клукс-клана</string>
+    <string name="rang_5">Адольф Гитлер</string>
+    <string name="rating_not_found">Рейнг пуст. Ты можешь быть первым!</string>
+
+    <!--Notifications screen-->
+    <string name="notifications_title">Уведомления</string>
+    <string name="notifications_not_found">Новые уведомления не найдены.</string>
+
+    <!--Settings screen-->
+    <string name="settings_title">Настройки</string>
+    <string name="app_rating"><b>Оценка приложения</b></string>
+    <string name="app_rating_subtext">Оцените приложение на Google Play</string>
+    <string name="recommend_app"><b>Рекомендовать приложение</b></string>
+    <string name="recommend_app_subtext">Рекомендовать приложение Угадай Расу друзьям</string>
+    <string name="clear_watched_images"><b>Отчистить Просмотренные Изображения</b></string>
+    <string name="clear_watched_images_subtext">Удалить историю ответов</string>
+    <string name="privacy">Конфиденциальность</string>
+    <string name="version">Версия</string>
+    <string name="music">Музыка</string>
+    <string name="remove_from_watched_images">Вы действительно хотите очистить историю просмотров?</string>
+    <string name="remove">Очистить</string>
+    <string name="remove_success">Просомтренные изображения очищены!</string>
+    <string name="remove_error">Просомтренные изображения не очищены!</string>
+
+    <!--Privacy screen-->
+    <string name="privacy_title">Конфиденциальность</string>
+
+    <!--Feedback screen-->
+    <string name="feedback_title">Обратная связь</string>
+    <string name="feedback_message">Имеете ли Вы какие-либо вопросы или предложения или Вы хотите уведомить нас о технической проблеме? Тогда свяжитесь с нами!\n\nЕсли Вам нравится приложение пожалуйста оцение его в магазине: Google Play!</string>
+    <string name="send_feedback">Отправить</string>
+    <string name="send_button">Отправить</string>
+    <string name="preview_button">Предпросмотр</string>
+    <string name="system_information">вкл. информацию о системе</string>
+    <string name="rate_app">Оценить приложение</string>
+    <string name="your_message">Ваше сообщение</string>
+
+    <!--About screen-->
+    <string name="about_title">О нас</string>
+    <string name="about_message">Это приложение было разработано в качестве дипломного проекта. Мне нужно собрать статистику о людях. Как они могу идентифицировать расу ледей по заднему фону и одежде. Здесь нет расизма. Если у Вас есть какие-то претензии можете написать нам. Но я надеюсь, что Вы провидите хорошо время в приложении! И было бы замечательно, если Вы оцените приложение или расскажете о нём друзьям!</string>
+
+    <!--Rate dialog-->
+    <string name="rate_title">Оценить приложение</string>
+    <string name="rate_text">Если Вам нравиться это приложение, не могли бы Вы выделить момент, для оценки? Это займет минуту. \n Спасибо за поддержку!</string>
+
+    <!--Error messages-->
+    <string name="check_internet_error">Ничего не было найдено, проверьте интрнет-подключение.</string>
+    <string name="error_choose">Ошибка выбора элемента</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="error">Ошибка</string>
+    <string name="network_error">Ошибка сети</string>
+    <string name="not_modified_error">304 Not Modified</string>
+    <string name="bad_request_error">400 Bad Request</string>
+    <string name="unauthorized_error">401 Unauthorized</string>
+    <string name="forbidden_error">403 Forbidden</string>
+    <string name="not_found_error">404 Not Found</string>
+    <string name="method_not_allowed_error">405 Method Not Allowed</string>
+    <string name="conflict_error">409 Conflict</string>
+    <string name="unprocessable_error">422 Unprocessable</string>
+    <string name="server_error_error">500 Server Error</string>
+
+    <!--Calligraphy Config-->
+    <string name="font_main_regular">fonts/OpenSans-Light.ttf</string>
+    <string name="font_main_medium">fonts/OpenSans-Regular.ttf</string>
+    <string name="font_main_bold">fonts/OpenSans-Bold.ttf</string>
+    <string name="font_path">fonts</string>
+
+    <!--Navigation drawer-->
+    <string name="hello_text">Здравствуйте, </string>
+    <string name="home_item">Home</string>
+    <string name="rating_item">Рейтинг</string>
+    <string name="settings_item">Настройки</string>
+    <string name="feedback_item">Обратная связь</string>
+    <string name="about_item">О нас</string>
+    <string name="exit">Выход</string>
+    <string name="logout">Выход</string>
+    <string name="logout_question">Вы действительно хотите выйти?</string>
+
+    <!--General-->
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="save">Сохранить</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+
+    <!--Admob-->
+    <string name="admob_unit_id">ca-app-pub-6408266897351843/5980174013</string>
+    <string name="admob_unit_id_bottom_banner">ca-app-pub-6408266897351843/3380318993</string>
+</resources>

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v4.view.ViewPager
 import android.view.View
+import android.widget.ImageView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.gms.ads.AdRequest
@@ -161,16 +162,17 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
         carouselView.visible(true)
         raceImageView.visible(false)
 
-        val sampleImages = intArrayOf(R.drawable.badge_background, R.drawable.abc_item_background_holo_dark)
+        val sampleImages = intArrayOf(R.drawable.tutorial1, R.drawable.tutorial2, R.drawable.background_splash)
 
         carouselView.pageCount = sampleImages.size
 
         carouselView.setImageListener { position, imageView ->
+            imageView.scaleType = ImageView.ScaleType.FIT_XY
             imageView.setImageResource(sampleImages[position])
         }
 
-        carouselView.setPageTransformInterval(1000)
-        carouselView.pauseCarousel()
+        carouselView.reSetSlideInterval(10000)
+        carouselView.playCarousel()
 
         carouselView.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -180,9 +182,11 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
             }
 
             override fun onPageSelected(position: Int) {
-                if (position == 1) {
+                if (position == 2) {
                     raceImageView.visible(true)
                     carouselView.visible(false)
+                    carouselView.pageCount = 0
+                    showMessage(getString(R.string.swipe_help))
                 }
             }
         })

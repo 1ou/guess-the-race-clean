@@ -22,7 +22,7 @@ class SettingsPrefs @Inject constructor(
         }
 
     override var isPlayMusic: Boolean
-        get() = getSharedPreferences(SETTINGS_DATA).getBoolean(IS_PLAY_MUSIC, true)
+        get() = getSharedPreferences(SETTINGS_DATA).getBoolean(IS_PLAY_MUSIC, false)
         set(value) {
             getSharedPreferences(SETTINGS_DATA).edit().putBoolean(IS_PLAY_MUSIC, value).apply()
         }

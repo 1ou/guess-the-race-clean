@@ -6,6 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.Screens
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
+import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
 import skubyev.anton.guesstherace.presentation.drawer.NavigationDrawerView.MenuItem
 import skubyev.anton.guesstherace.presentation.drawer.NavigationDrawerView.MenuItem.*
 import skubyev.anton.guesstherace.presentation.global.ErrorHandler
@@ -16,7 +17,8 @@ import javax.inject.Inject
 class NavigationDrawerPresenter @Inject constructor(
         private val router: Router,
         private val menuController: GlobalMenuController,
-        private val authInteractor: AuthInteractor
+        private val authInteractor: AuthInteractor,
+        private val settingsInteractor: SettingsInteractor
 ) : MvpPresenter<NavigationDrawerView>() {
 
     private var currentSelectedItem: MenuItem? = null
@@ -50,6 +52,7 @@ class NavigationDrawerPresenter @Inject constructor(
     fun onLogoutClick() {
         menuController.close()
         authInteractor.logout()
+        settingsInteractor.clear()
         router.newRootScreen(Screens.AUTH_SCREEN)
     }
 
