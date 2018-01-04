@@ -6,13 +6,13 @@
     <string name="name">Name</string>
     <string name="greeting">Welcome to the application Guess The Race. Enter your name and press OK.</string>
     <string name="error_login">That name has already used.</string>
-    <string name="error_login_length">Name should consist more than 5 symbols.</string>
+    <string name="error_login_length">Name should consist more than 3 symbols.</string>
     <string name="you_not_auth">You did not authorized.</string>
 
     <!--Home screen-->
     <string name="home_title">Guess The Race</string>
-    <string name="black">Black</string>
-    <string name="white">White</string>
+    <string name="black">African</string>
+    <string name="white">European</string>
     <string name="you_guessed">You guessed!</string>
     <string name="you_not_guessed">You did not guess</string>
     <string name="images_over_title">Images are over</string>

@@ -6,13 +6,13 @@
     <string name="name">Имя</string>
     <string name="greeting">Добро пожаловать в приложение Угадай Расу. Введите имя и нажмите кнопку ОК.</string>
     <string name="error_login">Это имя уже используется.</string>
-    <string name="error_login_length">Имя должно содержать больше 5 символов.</string>
+    <string name="error_login_length">Имя должно содержать более 3 символов.</string>
     <string name="you_not_auth">Вы не авторизованы.</string>
 
     <!--Home screen-->
     <string name="home_title">Угадай Расу</string>
-    <string name="black">Черный</string>
-    <string name="white">Белый</string>
+    <string name="black">Африканцы</string>
+    <string name="white">Европейцы</string>
     <string name="you_guessed">Вы угадали!</string>
     <string name="you_not_guessed">Вы не угадали</string>
     <string name="images_over_title">Изображения закончились</string>

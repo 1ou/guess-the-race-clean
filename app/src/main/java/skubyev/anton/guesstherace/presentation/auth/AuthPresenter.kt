@@ -38,6 +38,8 @@ class AuthPresenter @Inject constructor(
 
     fun testLogin(login: String) = authInteractor
             .testLogin(login)
+            .doOnSubscribe { viewState.showProgress(true) }
+            .doAfterTerminate { viewState.showProgress(false) }
             .doOnSuccess {
                 if (it.success) registration(login)
                 else viewState.showErrorDialog(resourceManager.getString(R.string.error_login))

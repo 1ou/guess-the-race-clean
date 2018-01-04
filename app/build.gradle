@@ -19,8 +19,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         multiDexEnabled true
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.1.0"
         buildConfigField "String", "ORIGIN_API_ENDPOINT", '"http://wooa.ru/android/determinace/backend/"'
         buildConfigField "String", "ORIGIN_IMAGES_ENDPOINT", '"http://wooa.ru/android/determinace/photo/"'
         vectorDrawables.useSupportLibrary true
