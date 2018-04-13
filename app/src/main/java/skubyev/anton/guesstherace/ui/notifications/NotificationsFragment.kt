@@ -32,7 +32,8 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
 
     private var listState: Parcelable? = null
 
-    @InjectPresenter lateinit var presenter: NotificationsPresenter
+    @InjectPresenter
+    lateinit var presenter: NotificationsPresenter
 
     @ProvidePresenter
     fun providePresenter(): NotificationsPresenter {
@@ -66,18 +67,22 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
     }
 
     override fun onResume() {
-        LocalBroadcastManager.getInstance(context!!)
-                .registerReceiver(
-                        messageReceiver,
-                        IntentFilter("notification")
-                )
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                    .registerReceiver(
+                            messageReceiver,
+                            IntentFilter("notification")
+                    )
+        }
 
         super.onResume()
     }
 
     override fun onPause() {
-        LocalBroadcastManager.getInstance(context!!)
-                .unregisterReceiver(messageReceiver)
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                    .unregisterReceiver(messageReceiver)
+        }
 
         super.onPause()
     }
@@ -112,9 +117,11 @@ class NotificationsFragment : BaseFragment(), NotificationsView {
     inner class NotificationsAdapter : ListDelegationAdapter<MutableList<ListItem>>() {
         init {
             items = mutableListOf()
-            delegatesManager.addDelegate(NotificationsAdapterDelegate({
-                presenter.notificationWasShowed(it)
-            }))
+            delegatesManager.addDelegate(
+                    NotificationsAdapterDelegate({
+                        presenter.notificationWasShowed(it)
+                    })
+            )
             delegatesManager.addDelegate(ProgressAdapterDelegate())
         }
 

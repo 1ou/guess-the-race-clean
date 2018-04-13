@@ -41,7 +41,8 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
 
     private lateinit var interstitialAd: InterstitialAd
 
-    @InjectPresenter lateinit var presenter: HomePresenter
+    @InjectPresenter
+    lateinit var presenter: HomePresenter
 
     companion object {
         private const val IMAGE_OVER_TAG = "image_over_tag"
@@ -92,11 +93,13 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
     }
 
     override fun onResume() {
-        LocalBroadcastManager.getInstance(context!!)
-                .registerReceiver(
-                        messageReceiver,
-                        IntentFilter("notification")
-                )
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                    .registerReceiver(
+                            messageReceiver,
+                            IntentFilter("notification")
+                    )
+        }
 
         super.onResume()
     }
@@ -114,15 +117,14 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
         interstitialAd.loadAd(AdRequest.Builder().build())
     }
 
-    override fun showImagesOverInfo() {
-        ConfirmDialog.newInstants(
-                getString(R.string.images_over_title),
-                getString(R.string.images_over_text),
-                getString(R.string.ok),
-                getString(R.string.cancel),
-                IMAGE_OVER_TAG
-        ).show(childFragmentManager, IMAGE_OVER_TAG)
-    }
+    override fun showImagesOverInfo() = ConfirmDialog.newInstants(
+            getString(R.string.images_over_title),
+            getString(R.string.images_over_text),
+            getString(R.string.ok),
+            getString(R.string.cancel),
+            IMAGE_OVER_TAG
+    ).show(childFragmentManager, IMAGE_OVER_TAG)
+
 
     override val dialogConfirm: (tag: String) -> Unit = { tag ->
         when (tag) {
@@ -155,7 +157,9 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
         try {
             startActivity(goToMarket)
-        } catch (e: ActivityNotFoundException) { }
+        } catch (e: ActivityNotFoundException) {
+            e.printStackTrace()
+        }
     }
 
     override fun showTraining() {
@@ -174,7 +178,7 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
         carouselView.reSetSlideInterval(10000)
         carouselView.playCarousel()
 
-        carouselView.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+        carouselView.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -211,12 +215,16 @@ class HomeFragment : BaseFragment(), HomeView, ConfirmDialog.OnClickListener, Ra
             ORIGIN_IMAGES_ENDPOINT + image.urlLandscape
         }
 
-        raceImageView.addView(GuessedCard(
-                context!!,
-                url,
-                { presenter.clickedButton("white") },
-                { presenter.clickedButton("black") }
-        ))
+        context?.let {
+            raceImageView.addView(
+                    GuessedCard(
+                            it,
+                            url,
+                            { presenter.clickedButton("white") },
+                            { presenter.clickedButton("black") }
+                    )
+            )
+        }
         answerImageView.visibility = View.INVISIBLE
 
     }

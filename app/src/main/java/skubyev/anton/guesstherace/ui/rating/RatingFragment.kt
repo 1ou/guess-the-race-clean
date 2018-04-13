@@ -7,7 +7,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.card_view.view.*
 import kotlinx.android.synthetic.main.fragment_rating.*
 import kotlinx.android.synthetic.main.layout_list_with_update.*
 import skubyev.anton.guesstherace.R
@@ -26,7 +25,7 @@ class RatingFragment : BaseFragment(), RatingView {
 
     override val layoutRes = R.layout.fragment_rating
 
-    private val ratingAdapter = RatingAdapter()
+    private val ratingAdapter: RatingAdapter by lazy { RatingAdapter() }
 
     private var listState: Parcelable? = null
 
@@ -116,4 +115,6 @@ class RatingFragment : BaseFragment(), RatingView {
 
         private fun isProgress() = items.isNotEmpty() && items.last() is ListItem.ProgressItem
     }
+
+    override fun onBackPressed() = presenter.onBackPressed()
 }

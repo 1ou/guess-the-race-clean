@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '27.0.3'
     signingConfigs {
         release {
             storeFile file('guesstherace.jks')
@@ -19,7 +19,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         multiDexEnabled true
-        versionCode 3
+        versionCode 4
         versionName "1.1.0"
         buildConfigField "String", "ORIGIN_API_ENDPOINT", '"http://wooa.ru/android/determinace/backend/"'
         buildConfigField "String", "ORIGIN_IMAGES_ENDPOINT", '"http://wooa.ru/android/determinace/photo/"'
@@ -56,12 +56,12 @@ kapt {
 }
 
 ext {
-    supportLibraryVersion = "27.0.2"
+    supportLibraryVersion = "27.1.1"
     moxyVersion = "1.5.3"
     toothpickVersion = "1.0.6"
     retrofitVersion = "2.3.0"
     requery = "1.4.0"
-    firebase = "11.8.0"
+    firebase = "12.0.1"
     permissons = "3.1.0"
 }
 
@@ -71,7 +71,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.android.support:multidex:1.0.3'
 
     //Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -99,7 +99,7 @@ dependencies {
     //Retrofit
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     //RxJava
@@ -119,9 +119,6 @@ dependencies {
     //Lottie
     compile 'com.airbnb.android:lottie:2.1.0'
 
-    //Small bang animation
-    implementation 'pub.hanks:smallbang:1.2.2'
-
     //JUnit
     testCompile 'junit:junit:4.12'
 
@@ -131,10 +128,6 @@ dependencies {
     //Mockito Kotlin
     testCompile 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
     androidTestCompile 'junit:junit:4.12'
-
-    //Stetho
-    compile 'com.facebook.stetho:stetho:1.5.0'
-    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
     //ExpandableLayout
     compile 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
@@ -161,13 +154,6 @@ dependencies {
 
     //Carousel
     compile 'com.synnapps:carouselview:0.1.4'
-
-    //Permissions
-    compile("com.github.hotchemi:permissionsdispatcher:$permissons") {
-        // if you don't use android.app.Fragment you can exclude support for them
-        exclude module: "support-v13"
-    }
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$permissons"
 }
 
 configurations.all {
@@ -175,4 +161,5 @@ configurations.all {
         force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     }
 }
+
 apply plugin: 'com.google.gms.google-services'

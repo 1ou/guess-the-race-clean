@@ -7,5 +7,5 @@ import java.util.*
 @Entity
 data class Cache constructor(
         val name: String,
-        val time: Long = Date().time
+        val time: Long = System.currentTimeMillis()
 ) : Persistable

@@ -1,6 +1,5 @@
 package skubyev.anton.guesstherace.music
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -18,8 +17,8 @@ import skubyev.anton.guesstherace.toothpick.DI
 import toothpick.Toothpick
 import javax.inject.Inject
 
-@SuppressLint("Registered")
 class MusicService : Service() {
+
     private var mediaPlayer: MediaPlayer? = null
     private val binder = MusicBinder()
     @Inject lateinit var settingsInteractor: SettingsInteractor
@@ -37,14 +36,16 @@ class MusicService : Service() {
         if (Build.VERSION.SDK_INT >= 26) {
             val CHANNEL_ID = "my_channel_01"
             val channel = NotificationChannel(CHANNEL_ID,
-                    "Channel human readable title",
+                    "Music",
                     NotificationManager.IMPORTANCE_DEFAULT)
 
             (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(channel)
 
-            val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            val notification = NotificationCompat
+                    .Builder(this, CHANNEL_ID)
                     .setContentTitle("")
-                    .setContentText("").build()
+                    .setContentText("")
+                    .build()
 
             startForeground(1, notification)
         }

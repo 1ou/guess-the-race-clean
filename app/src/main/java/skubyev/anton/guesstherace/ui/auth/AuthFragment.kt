@@ -15,12 +15,11 @@ import toothpick.Toothpick
 class AuthFragment : BaseFragment(), AuthView {
 
     private companion object {
-        private val INFO_TAG = "info_tag"
+        private const val INFO_TAG = "info_tag"
+        private const val MIN_LOGIN_LENGTH = 3
     }
 
     override val layoutRes = R.layout.fragment_auth
-
-    private val minLogin = 3
 
     @InjectPresenter lateinit var presenter: AuthPresenter
 
@@ -35,18 +34,20 @@ class AuthFragment : BaseFragment(), AuthView {
         super.onActivityCreated(savedInstanceState)
 
         okBTN.setOnClickListener {
-            val login = loginTV.text.toString()
-            if (login.length > minLogin) {
+            val login = loginEditText.text.toString()
+            if (login.length > MIN_LOGIN_LENGTH) {
                 presenter.testLogin(login)
             } else {
                 showErrorDialog(getString(R.string.error_login_length))
             }
         }
 
-        loginTV.setOnClickListener {
-            if (loginTV.text.toString() == getString(R.string.name)) {
-                loginTV.setText("")
-            }
+        loginEditText.setOnFocusChangeListener { _, _ -> clearLoginEditText() }
+    }
+
+    private fun clearLoginEditText() {
+        if (loginEditText.text.toString() == getString(R.string.name)) {
+            loginEditText.setText("")
         }
     }
 

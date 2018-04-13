@@ -151,7 +151,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/version_sub"
+                    android:id="@+id/versionSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text"

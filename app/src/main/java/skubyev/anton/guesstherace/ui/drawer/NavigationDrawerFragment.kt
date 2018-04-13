@@ -18,6 +18,10 @@ import toothpick.Toothpick
 
 class NavigationDrawerFragment : BaseFragment(), NavigationDrawerView, ConfirmDialog.OnClickListener {
 
+    private companion object {
+        private const val CONFIRM_LOGOUT_TAG = "confirm_logout_tag"
+    }
+
     override val layoutRes = R.layout.fragment_nav_drawer
 
     private var mainActivity: MainActivity? = null
@@ -85,9 +89,5 @@ class NavigationDrawerFragment : BaseFragment(), NavigationDrawerView, ConfirmDi
 
     fun onScreenChanged(item: NavigationDrawerView.MenuItem) {
         presenter.onScreenChanged(item)
-    }
-
-    private companion object {
-        private val CONFIRM_LOGOUT_TAG = "confirm_logout_tag"
     }
 }

@@ -17,6 +17,8 @@ class NotificationsInteractor @Inject constructor(
     )
 
     fun getNotifications() = notificationsRepository.getNotifications()
-            .map { it.map { notificationMapper.invoke(it) } }
-            .map { it.reversed() }
+            .map {
+                it.map { notificationMapper.invoke(it) }
+                        .reversed()
+            }
 }

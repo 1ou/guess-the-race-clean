@@ -11,6 +11,7 @@ import skubyev.anton.guesstherace.extension.random
 import skubyev.anton.guesstherace.extension.subscribeIgnoreResult
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.interactor.image.ImageInteractor
+import skubyev.anton.guesstherace.model.interactor.image.ImagesOverError
 import skubyev.anton.guesstherace.model.interactor.notifications.NotificationsInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
 import skubyev.anton.guesstherace.model.interactor.settings.SettingsInteractor
@@ -52,20 +53,19 @@ class HomePresenter @Inject constructor(
     }
 
     private fun loadImage() = imageInteractor.getImage()
-            .doOnSuccess {
-                if (it != null) {
-                    currentImage = it
-                    viewState.showImage(it)
-                }
-
-                showRateDialog()
-            }
             .doOnError { viewState.showImagesOverInfo() }
             .doOnSubscribe { viewState.showProgress(true) }
             .doAfterTerminate { viewState.showProgress(false) }
             .subscribe(
-                    { },
-                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
+                    {
+                        currentImage = it
+                        viewState.showImage(it)
+                        showRateDialog()
+                    },
+                    {
+                        if (it is ImagesOverError) viewState.showImagesOverInfo()
+                        else errorHandler.proceed(it, { viewState.showMessage(it) })
+                    }
             )
             .addTo(compositeDisposable)
 
@@ -74,7 +74,7 @@ class HomePresenter @Inject constructor(
                 currentImage.urlAnswer,
                 currentImage.race == answer
         )
-        imageInteractor.saveWatchedImage(currentImage).subscribeIgnoreResult()
+        imageInteractor.saveWatchedImage(currentImage).subscribe({}, {}).addTo(compositeDisposable)
         loadNextImage()
     }
 
@@ -83,16 +83,10 @@ class HomePresenter @Inject constructor(
                 loadImage()
             }, 3000)
 
-    fun appendRating(state: Boolean) = profileInteractor.appendRating(
-            state
-    )
-            .subscribe(
-                    { },
-                    { errorHandler.proceed(it, { viewState.showMessage(it) }) }
-            )
+    fun appendRating(state: Boolean) = profileInteractor.appendRating(state).subscribe({}, {})
             .addTo(compositeDisposable)
 
-    fun isShowAdv() = (0..100).random() > 92
+    fun isShowAdv() = false // (0..100).random() > 100
 
     private fun showRateDialog() {
         if ((0..100).random() > 95 && settingsInteractor.isShowRate()) {

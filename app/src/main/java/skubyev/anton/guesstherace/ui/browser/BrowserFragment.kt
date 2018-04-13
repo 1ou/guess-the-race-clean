@@ -29,7 +29,6 @@ class BrowserFragment : BaseFragment(), BrowserView {
 
     @InjectPresenter lateinit var presenter: BrowserPresenter
 
-
     @ProvidePresenter
     fun createPresenter(): BrowserPresenter {
         val scopeName = "browser scope"

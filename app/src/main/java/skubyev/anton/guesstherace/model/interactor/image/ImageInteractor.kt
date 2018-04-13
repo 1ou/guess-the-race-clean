@@ -1,6 +1,5 @@
 package skubyev.anton.guesstherace.model.interactor.image
 
-import io.reactivex.Single
 import skubyev.anton.guesstherace.model.data.storage.Image
 import skubyev.anton.guesstherace.model.repository.images.ImagesRepository
 import skubyev.anton.guesstherace.model.repository.watchedimages.WatchedImagesRepository
@@ -18,7 +17,7 @@ class ImageInteractor @Inject constructor(
                 if (imagesSize != it.size || imagesSize == 0) {
                     return@flatMap imagesRepository.getImage(it)
                 } else {
-                    return@flatMap Single.just(null)
+                    throw ImagesOverError()
                 }
             }
 

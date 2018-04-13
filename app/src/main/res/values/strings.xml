@@ -20,7 +20,6 @@
     <string name="thanks_for_rating">Thank you for rating!</string>
     <string name="swipe_help">Swipe image to the right or left!</string>
 
-
     <!--Comments screen-->
     <string name="comments_title">Comments</string>
     <string name="comments_not_found">Comments was not found. You can be first!</string>
@@ -64,6 +63,8 @@
     <string name="remove">Remove</string>
     <string name="remove_success">Watched Images removed!</string>
     <string name="remove_error">Watched Images was not removed!</string>
+    <string name="get_app_on_phone">Get the Guess The Race App for you Smartphone or Tablet: </string>
+    <string name="select_app">Select App to Share Text and Image</string>
 
     <!--Privacy screen-->
     <string name="privacy_title">Privacy</string>

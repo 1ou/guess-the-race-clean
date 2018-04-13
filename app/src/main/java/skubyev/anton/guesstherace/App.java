@@ -1,14 +1,10 @@
 package skubyev.anton.guesstherace;
 
 import android.content.ContextWrapper;
-import android.content.Intent;
-import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 
-import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import skubyev.anton.guesstherace.music.MusicService;
 import skubyev.anton.guesstherace.toothpick.DI;
 import skubyev.anton.guesstherace.toothpick.module.AppModule;
 import skubyev.anton.guesstherace.toothpick.module.DatabaseModule;
@@ -30,7 +26,6 @@ public class App extends MultiDexApplication {
         initToothpick();
         initAppScope();
         initCalligraphy();
-        initStetho();
         initPrefs();
     }
 
@@ -73,13 +68,6 @@ public class App extends MultiDexApplication {
                 .setFontAttrId(R.string.font_path)
                 .build()
         );
-    }
-
-    private void initStetho() {
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this)).build());
     }
 }
 

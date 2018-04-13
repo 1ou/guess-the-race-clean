@@ -12,7 +12,7 @@ class DatabaseSourceProvider @Inject constructor(
 
     companion object {
         const val DB_NAME = "database.db"
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
     }
 
     private val databaseSource: DatabaseSource = DatabaseSource(context, Models.DEFAULT, DB_NAME, DB_VERSION)

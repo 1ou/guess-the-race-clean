@@ -3,6 +3,7 @@ package skubyev.anton.guesstherace.presentation.rating
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
+import ru.terrakok.cicerone.Router
 import skubyev.anton.guesstherace.extension.addTo
 import skubyev.anton.guesstherace.model.interactor.auth.AuthInteractor
 import skubyev.anton.guesstherace.model.interactor.profile.ProfileInteractor
@@ -16,7 +17,8 @@ class RatingPresenter @Inject constructor(
         private val ratingInteractor: RatingInteractor,
         private val profileInteractor: ProfileInteractor,
         private val errorHandler: ErrorHandler,
-        private val menuController: GlobalMenuController
+        private val menuController: GlobalMenuController,
+        private val router: Router
 ) : MvpPresenter<RatingView>() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -52,6 +54,8 @@ class RatingPresenter @Inject constructor(
     override fun onDestroy() {
         compositeDisposable.dispose()
     }
+
+    fun onBackPressed() = router.exit()
 
     fun onMenuPressed() = menuController.open()
 }

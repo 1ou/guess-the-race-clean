@@ -169,11 +169,11 @@ class MainActivity : BaseActivity(), LaunchView {
         override fun setupFragmentTransactionAnimation(command: Command?, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction?) {
             if (command is Forward) {
                 if (nextFragment !is HomeFragment) {
-                    fragmentTransaction!!.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    fragmentTransaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 }
             } else if (command is Back) {
                 if (currentFragment !is HomeFragment) {
-                    fragmentTransaction!!.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                    fragmentTransaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 }
             }
         }

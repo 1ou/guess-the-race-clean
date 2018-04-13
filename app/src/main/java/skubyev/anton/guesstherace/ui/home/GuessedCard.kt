@@ -16,8 +16,6 @@ import timber.log.Timber
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 
-
-
 @Layout(R.layout.card_view)
 class GuessedCard(
         private val context: Context,
@@ -51,6 +49,7 @@ class GuessedCard(
             Timber.e("IMAGE LOADING.")
         }
     }
+
     @Resolve
     private fun onResolved() {
         Picasso.with(context).load(url).into(target)

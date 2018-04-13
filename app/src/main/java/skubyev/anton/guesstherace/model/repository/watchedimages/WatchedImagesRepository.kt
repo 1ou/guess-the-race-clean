@@ -8,9 +8,10 @@ import skubyev.anton.guesstherace.toothpick.qualifier.database.WatchedImageQuali
 import javax.inject.Inject
 
 class WatchedImagesRepository @Inject constructor(
-        @WatchedImageQualifier private var database: PersistentDatabase<WatchedImageEntity>,
-        private val mapper: WatchedImagesEntityMapper
+        @WatchedImageQualifier private var database: PersistentDatabase<WatchedImageEntity>
 ) {
+    private val mapper = WatchedImagesEntityMapper()
+
     fun addWatchedImage(image: Image) = database.addResult(mapper.invoke(image))
 
     fun getWatchedImages() = database.getAllResults()

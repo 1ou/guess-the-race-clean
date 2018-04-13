@@ -64,6 +64,8 @@
     <string name="remove">Очистить</string>
     <string name="remove_success">Просомтренные изображения очищены!</string>
     <string name="remove_error">Просомтренные изображения не очищены!</string>
+    <string name="get_app_on_phone">Получите приложение Угадай Расу на свой телефон или планшет: </string>
+    <string name="select_app">Выберите приложение, чтобы поделиться</string>
 
     <!--Privacy screen-->
     <string name="privacy_title">Конфиденциальность</string>

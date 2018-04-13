@@ -9,17 +9,13 @@ class AuthInteractor @Inject constructor(
     fun isSignedIn() = authRepository.isSignedIn
 
     fun registration(login: String) = authRepository
-            .registration(
-                    login
-            )
+            .registration(login)
             .doOnSuccess {
                 authRepository.saveAuthData(it.token, true, it.id, it.name)
             }
 
     fun testLogin(login: String) = authRepository
-            .testLogin(
-                    login
-            )
+            .testLogin(login)
 
     fun idUser() = authRepository.idUser()
 

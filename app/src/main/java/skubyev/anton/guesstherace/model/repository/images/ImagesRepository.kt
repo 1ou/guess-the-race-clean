@@ -16,25 +16,25 @@ class ImagesRepository @Inject constructor(
         @ImageQualifier private var database: PersistentDatabase<Image>,
         @CacheQualifier private var cache: PersistentDatabase<Cache>,
         private val api: GeneralApi,
-        private val schedulers: SchedulersProvider,
-        private val mapper: ImageMapper
+        private val schedulers: SchedulersProvider
 ) {
+    private val mapper = ImageMapper()
     private val expirationTime: Long = 1000 * 60 * 60 * 12 // 12 h
 
     fun getImagesSize() = database.getSize()
 
     fun getImage(watchedImages: List<Int>) = cache.findByCache(database.type.toString())
             .flatMap { cache ->
-                if (Date().time - cache.time < expirationTime) {
+                if (System.currentTimeMillis() - cache.time < expirationTime) {
                     return@flatMap getDataFromDB(watchedImages)
                 } else {
-                    updateCache(cache)
                     return@flatMap getDataFromApi()
+                            .doOnSuccess { updateCache(cache) }
                 }
             }
             .onErrorResumeNext {
-                updateCache(null)
                 return@onErrorResumeNext getDataFromApi()
+                        .doOnSuccess { updateCache(null) }
             }
 
     private fun getDataFromDB(watchedImages: List<Int>) = database.getImage(watchedImages)
@@ -57,10 +57,12 @@ class ImagesRepository @Inject constructor(
     private fun updateCache(cacheItem: Cache?) {
         if (cacheItem != null) {
             cache.deleteCacheByName(cacheItem.name)
-                    .doOnComplete {
-                        cache.addResult(Cache(database.type.toString())).subscribeIgnoreResult()
-                    }
-                    .subscribeIgnoreResult()
+                    .subscribe(
+                            {
+                                cache.addResult(Cache(database.type.toString())).subscribeIgnoreResult()
+                            },
+                            {}
+                    )
         } else {
             cache.addResult(Cache(database.type.toString())).subscribeIgnoreResult()
         }

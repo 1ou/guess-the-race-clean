@@ -24,7 +24,7 @@ import toothpick.Toothpick
 class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickListener {
 
     private companion object {
-        private val CONFIRM_WATCHED_IMAGES_TAG = "confirm_watched_images_tag"
+        private const val CONFIRM_WATCHED_IMAGES_TAG = "confirm_watched_images_tag"
     }
 
     private var musicService: MusicService? = null
@@ -79,19 +79,20 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
             shareIntent.type = "*/*"
             shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Get the Guess The Race App for you Smartphone or Tablet: " + "market://details?id=" + context?.packageName)
-            startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"))
+            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.get_app_on_phone) + "market://details?id=" + context?.packageName)
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.select_app)))
         }
 
         privacy.setOnClickListener {
             presenter.clickedPrivacy()
         }
 
-        version_sub.text = context?.packageManager?.getPackageInfo(context?.packageName, 0)?.versionName
+        versionSub.text = context?.packageManager?.getPackageInfo(context?.packageName, 0)?.versionName
 
         musicSwitch.isChecked = presenter.isMusicTurnOn()
 
         val intent = Intent(context, MusicService::class.java)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity?.startForegroundService(intent)
             activity?.bindService(intent, connection, BIND_AUTO_CREATE)
@@ -100,9 +101,9 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
             activity?.bindService(intent, connection, BIND_AUTO_CREATE)
         }
 
-        musicSwitch.setOnCheckedChangeListener { _, b ->
-            presenter.changeStateMusicPlayer(b)
-            if (b) {
+        musicSwitch.setOnCheckedChangeListener { _, state ->
+            presenter.changeStateMusicPlayer(state)
+            if (state) {
                 musicService?.playMusic()
             } else {
                 musicService?.pauseMusic()
@@ -120,7 +121,7 @@ class SettingsFragment : BaseFragment(), SettingsView, ConfirmDialog.OnClickList
         try {
             startActivity(goToMarket)
         } catch (e: ActivityNotFoundException) {
-            showSnackMessage("Error")
+            showSnackMessage(getString(R.string.error))
         }
     }
 

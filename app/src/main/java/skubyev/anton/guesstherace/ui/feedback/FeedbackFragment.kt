@@ -19,7 +19,7 @@ import toothpick.Toothpick
 class FeedbackFragment : BaseFragment(), FeedbackView {
 
     private companion object {
-        private val PREVIEW_TAG = "preview_tag"
+        private const val PREVIEW_TAG = "preview_tag"
     }
 
     override val layoutRes = R.layout.fragment_feedback
@@ -68,6 +68,7 @@ class FeedbackFragment : BaseFragment(), FeedbackView {
             try {
                 startActivity(emailIntent)
             } catch (e: ActivityNotFoundException) {
+                e.printStackTrace()
             }
         }
     }
@@ -80,7 +81,7 @@ class FeedbackFragment : BaseFragment(), FeedbackView {
         try {
             startActivity(goToMarket)
         } catch (e: ActivityNotFoundException) {
-            showSnackMessage("Error")
+            showSnackMessage(getString(R.string.error))
         }
     }
 

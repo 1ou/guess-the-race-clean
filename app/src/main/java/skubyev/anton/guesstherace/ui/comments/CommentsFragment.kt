@@ -27,6 +27,7 @@ class CommentsFragment : BaseFragment(), CommentsView, EditDialog.OnClickListene
     companion object {
         private const val ARG_IMAGE_ID = "image id"
         private const val ADD_COMMENT_TAG = "add_comment_tag"
+        private const val MAX_LENGTH = 10
 
         fun createNewInstance(data: Int) = CommentsFragment().apply {
             arguments = Bundle().also {
@@ -36,9 +37,7 @@ class CommentsFragment : BaseFragment(), CommentsView, EditDialog.OnClickListene
     }
 
     override val layoutRes = R.layout.fragment_comments
-
-    private val commentsAdapter = CommentsAdapter()
-
+    private val commentsAdapter: CommentsAdapter by lazy { CommentsAdapter() }
     private var listState: Parcelable? = null
 
     @InjectPresenter lateinit var presenter: CommentsPresenter
@@ -97,7 +96,7 @@ class CommentsFragment : BaseFragment(), CommentsView, EditDialog.OnClickListene
     override val dialogEdit: (tag: String, msg: String) -> Unit = { tag, msg ->
         when (tag) {
             ADD_COMMENT_TAG -> {
-                if (msg.length > 10) {
+                if (msg.length > MAX_LENGTH) {
                     presenter.addComment(msg)
                 } else {
                     showSnackMessage(getString(R.string.fail_length_comment))
